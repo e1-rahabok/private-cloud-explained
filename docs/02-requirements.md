@@ -65,7 +65,7 @@ Status labels: **Spec** = original strategy document. **Addendum** = technical i
 
 ## Constraints
 
-- No external SaaS hosting for production content (N1). This repository on GitHub holds code, documentation and synthetic sample content. Production content lives in an internal Git repository (decision D-027).
+- These requirements describe the **reference deployment** a student builds in a private cloud. They do not apply to this public template repository. In a deployment, there is no external SaaS hosting for content (N1). Content lives in the student's private repository (D-027).
 - The portal is read-only toward the infrastructure (I5).
 - CPU-only inference on a 16 vCPU, 128 GB VM (I1).
 - The audience is mixed: executives and engineers.

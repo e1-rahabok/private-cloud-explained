@@ -69,11 +69,11 @@ Secrets sit in the organization's secrets store. They are injected at runtime. R
 
 ## Repository controls
 
-- Private internal repository for production content.
+- The deployment's repository is private. It is a private copy of the public template.
 - Branch protection on `main`: required review, required checks, no force-push, signed commits where available.
 - CODEOWNERS maps domains to reviewers.
 - Secret scanning and push protection on.
-- This public-facing repository holds only code, docs and synthetic samples. A check blocks content that looks like production material (D-027).
+- The public template holds only design, reference code and invented samples. Keep real content out of it (D-027). A check in your private copy can block pushes to the template remote.
 
 ## Policy scan in CI
 

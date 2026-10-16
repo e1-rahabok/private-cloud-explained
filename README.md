@@ -1,12 +1,25 @@
 # Private Cloud Explained
 
+A **public template** for building a private-cloud documentation website with a local LLM.
+
 One private-cloud knowledge base, many ways to learn it: read, search, ask, watch, listen, play, quiz.
 
-Private Cloud Explained is an internal website that explains a VMware private cloud to its audiences: the CIO, senior leadership, and VMware administrators. People learn differently, so the same knowledge is offered in several forms.
+## What this is
+
+- Instructions and a reference design for VMware admins and infrastructure architects.
+- You follow this repository, study it, and build **your own** application.
+- Your application is **100% private**. It runs only on your private cloud, not on the internet. That is why the chat model is a local LLM.
+- The output is a real website in the style of [isvara.io](https://isvara.io), hosted inside your network.
+- This repository contains **no private data**. Everything here is public.
+
+## Start here
+
+1. Create a **private copy** of this repository. Do not fork it publicly. See [How to use this template](docs/00-how-to-use-this-template.md).
+2. Change the parts that differ in your organization: document sources, email system, intranet, login (identity provider), access groups, CI system.
+3. Build in phases, following the [roadmap](docs/13-roadmap.md).
+4. Never push your organization's data back to this public repository.
 
 The point is the consumption of the output, not the automation of the input. Automated ingestion keeps the content current. The site is what people use.
-
-Modelled on the multi-mode approach of [isvara.io](https://isvara.io).
 
 ## Ways to consume
 
@@ -32,8 +45,10 @@ All modes draw from one source of truth: the Markdown in `content/`. Each mode i
 
 ## Constraints
 
+Constraints of the reference deployment (your private copy):
+
 - Runs inside the corporate network. No external SaaS, public cloud host, or external LLM API.
-- Corporate SSO and Active Directory authentication.
+- Corporate SSO and Active Directory authentication. Your identity provider and groups will differ.
 - Read-only. No connection to vCenter or live infrastructure telemetry.
 - The chat model runs locally on a CPU-only Linux VM in vSphere (16 vCPU and 128 GB RAM planned).
 
@@ -57,6 +72,7 @@ Design sources: the strategy document (PDF in [docs/source/](docs/source/)) and 
 
 ## Documentation
 
+- [0. How to use this template](docs/00-how-to-use-this-template.md)
 - [Vision and audiences](docs/01-vision-and-audiences.md)
 - [Requirements](docs/02-requirements.md)
 - [Architecture](docs/03-architecture.md)

@@ -1,9 +1,10 @@
 # Documentation
 
-Complete plan for Private Cloud Explained. No code exists yet. Read in order, or jump to a topic.
+Complete plan for the Private Cloud Explained template. No code exists yet. **Start with document 0.** Then read in order, or jump to a topic.
 
 | # | Document | Covers |
 | --- | --- | --- |
+| 0 | [How to use this template](00-how-to-use-this-template.md) | Private copy, what to adapt, checklist |
 | 1 | [Vision and audiences](01-vision-and-audiences.md) | Goals, non-goals, audiences, principles, success measures |
 | 2 | [Requirements](02-requirements.md) | Functional, non-functional, infrastructure, security; traceability to the strategy |
 | 3 | [Architecture](03-architecture.md) | Components, diagrams, interfaces, technology choices |

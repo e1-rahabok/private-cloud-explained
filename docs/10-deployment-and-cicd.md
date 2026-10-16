@@ -14,9 +14,9 @@
 | --- | --- | --- | --- |
 | Local | Authors and lab learners | Sample content | Optional small model |
 | Dev | Integration of code changes | Sample content | Shared small instance |
-| Production | Readers | Production content (internal repo) | Production LLM VM |
+| Production | Readers | Your real content (private repo) | Production LLM VM |
 
-Production is deployed only from `main` of the internal repository. Dev can deploy from branches. (Proposed, I6)
+Production is deployed only from `main` of your private repository. Dev can deploy from branches. (Proposed, I6)
 
 ## Build and deploy flow
 

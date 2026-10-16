@@ -111,12 +111,12 @@ Static generation gives the sub-second loads in N3. Access control cannot be bak
 | Hosting | On-premises VM with Docker Compose first; Kubernetes if one exists | Public cloud, Vercel | N1 |
 | Rebuild trigger | Git webhook plus nightly cron | Cron only | Content appears minutes after approval |
 
-## Repository layout and the content boundary
+## Repository layout and the template boundary
 
-This repository holds code, documentation and **synthetic sample content**. Production content is private and lives in an internal Git repository (D-027). In production, `content/` is that repository, attached at build time as a Git submodule or a checkout step. The schema, linter and CI definitions live here and apply to both.
+This repository is a **public template**: design documents, reference code and invented sample content. A student's private copy adds their own connectors, configuration and content (D-027). See [how to use this template](00-how-to-use-this-template.md).
 
 ```text
-content/      Markdown. Sample content here. Production content in the internal repository.
+content/      Markdown. Invented samples in the template. Real content in a private copy.
 pipeline/     Ingestion and AI conversion.
 site/         Next.js portal.
 assistant/    Retrieval and LLM serving configuration.

@@ -10,7 +10,7 @@ Likelihood and impact are Proposed judgments (L, M, H), not measurements.
 | R-02 | Restricted content visible through search or Ask | M | H | Scope filter before retrieval, scope matrix and leak tests | Security |
 | R-03 | Secret or sensitive data enters Git or the model | M | H | Pre- and post-AI scans, push protection, quarantine | Security |
 | R-04 | Ask is too slow or low quality on 16 vCPU | M | H | Phase 0 measurement, MoE model, short context, resize path | Platform owner |
-| R-05 | Production content pushed to this public GitHub repository | M | H | Synthetic samples only, check for content patterns, internal repository for production (D-027) | Platform owner |
+| R-05 | A student commits real organizational data to the public template, an issue or a pull request | M | H | Work only in a private copy; disable push to the template remote; checklist in [how to use](00-how-to-use-this-template.md) | Student |
 | R-06 | Generation of media competes with Ask for CPU | M | M | Off-hours batch, separate instance, throttle | Platform owner |
 | R-07 | Content goes stale and trust is lost | H | H | Cadence, banners, owners, freshness report | Domain owners |
 | R-08 | Reviewer capacity too low, backlog grows | H | M | Prioritise by `priority`, batch reviews, auto-reject low-signal drafts | Domain owners |
@@ -59,8 +59,8 @@ Status: **Open** unless stated. "Needed by" is the phase before which a decision
 | D-024 | Regulatory or works-council review of logging and analytics | Organization confirms | Required before Phase 2 logging | Phase 2 |
 | D-025 | Team size and capacity | Unknown | Provide to set phase durations | Phase 0 |
 | D-026 | Names: portal, assistant | Open | Pick a name for the assistant | Phase 1 |
-| D-027 | Repository model | This repository: code, docs, synthetic samples. Internal repository: production content | As stated | Phase 0 |
-| D-028 | Visibility of this GitHub repository | Public; private | **Decided: public.** Training material for students. Only synthetic content is committed | Closed |
+| D-027 | Repository model | Public template plus one private copy per student | **Decided.** This repository is the public template. Each student keeps a private copy with their own content and configuration | Closed |
+| D-028 | Visibility of this GitHub repository | Public; private | **Decided: public.** It is a template with no private data. Students' copies are private | Closed |
 
 ## Assumptions to validate in Phase 0
 

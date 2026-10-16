@@ -34,11 +34,13 @@ The multiple ways to consume are therefore first-class requirements (F5 to F9 in
 
 - Live monitoring or telemetry. The portal has no connection to vCenter or runtime state.
 - Replacing the source systems. The portal is a derived, curated view of them.
-- Public internet exposure.
+- Public internet exposure of the deployed site. The site runs only inside the private cloud.
 - Operating the private cloud. The assistant is read-only and takes no actions.
 - A general-purpose chatbot. Ask answers only from portal content. (Proposed)
 
 ## Audiences
+
+The people who **build** the site are VMware admins and infrastructure architects who follow this template ([how to use](00-how-to-use-this-template.md)). The people who **read** the site are the audiences below.
 
 | Audience | Needs | Likely modes | Origin |
 | --- | --- | --- | --- |

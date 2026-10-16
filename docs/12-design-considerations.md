@@ -101,11 +101,11 @@ Each consideration states the question, the evidence or reasoning, and the decis
 - Reasoned: sub-second loads are a stated goal (N3), and lazy loading keeps heavy modes from slowing plain reading.
 - Decision: budgets in [site design](06-site-design.md); lazy-load Mermaid, search, chat, quiz and game.
 
-## DC-19. Public repository versus private content
+## DC-19. Public template, private deployments
 
-- Fact: this GitHub repository is currently public.
-- Risk: production content pushed here would be exposed.
-- Decision: this repository holds code, docs and synthetic samples only (D-027); production content stays in an internal repository; a check blocks suspicious content. Visibility of this repository is the owner's decision.
+- Fact: this repository is a public template. Each student builds a private deployment from a private copy.
+- Risk: a student pushes real organizational data back to the public template.
+- Decision: the template holds only design, reference code and invented samples (D-027, D-028). Students work in a private copy, disable push to the template remote, and follow the checklist in [how to use this template](00-how-to-use-this-template.md).
 
 ## DC-20. Measure before claiming
 
