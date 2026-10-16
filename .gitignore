@@ -1,0 +1,20 @@
+# Dependencies and build output
+node_modules/
+.next/
+out/
+__pycache__/
+*.pyc
+
+# Secrets and local config
+.env
+.env.*
+
+# Raw ingested material may contain sensitive text. Never commit it.
+pipeline/staging/
+
+# Model files
+*.gguf
+models/
+
+# OS
+.DS_Store
