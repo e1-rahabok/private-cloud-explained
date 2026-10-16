@@ -60,7 +60,7 @@ Status: **Open** unless stated. "Needed by" is the phase before which a decision
 | D-025 | Team size and capacity | Unknown | Provide to set phase durations | Phase 0 |
 | D-026 | Names: portal, assistant | Open | Pick a name for the assistant | Phase 1 |
 | D-027 | Repository model | This repository: code, docs, synthetic samples. Internal repository: production content | As stated | Phase 0 |
-| D-028 | Visibility of this GitHub repository | Public; private | Private until the owner decides | Now |
+| D-028 | Visibility of this GitHub repository | Public; private | **Decided: public.** Training material for students. Only synthetic content is committed | Closed |
 
 ## Assumptions to validate in Phase 0
 
