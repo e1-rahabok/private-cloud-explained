@@ -87,6 +87,7 @@ Design sources: the strategy document (PDF in [docs/source/](docs/source/)) and 
 - [Design considerations](docs/12-design-considerations.md)
 - [Roadmap](docs/13-roadmap.md)
 - [Risks and open decisions](docs/14-risks-and-open-decisions.md)
+- [Reference: diagrams, IDs, cross-checks](docs/reference.md)
 - [Glossary](docs/glossary.md)
 
 Open decisions:

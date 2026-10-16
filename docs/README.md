@@ -19,6 +19,7 @@ Complete plan for the Private Cloud Explained template. No code exists yet. **St
 | 12 | [Design considerations](12-design-considerations.md) | Evidence-based design choices (DC-01 to DC-22) |
 | 13 | [Roadmap](13-roadmap.md) | Phases, exit criteria, lab track |
 | 14 | [Risks and open decisions](14-risks-and-open-decisions.md) | R-01 to R-20, D-001 to D-028 |
+| - | [Reference](reference.md) | Diagram index, ID index, cross-checks |
 | - | [Glossary](glossary.md) | Terms |
 | - | [Source: strategy PDF](source/AI-Powered_Private_Cloud_Documentation_Platform_-_Strategy__Architecture.pdf) | Original strategy document |
 
