@@ -45,14 +45,33 @@ pipeline/     Ingestion and AI conversion ("auto docs").
 site/         Next.js web portal.
 assistant/    Chat: retrieval and local LLM serving.
 media/        Video, audio, game and quiz assets.
-docs/         Architecture notes and decision records.
+docs/         Complete design documentation. Start at docs/README.md.
+config/       Taxonomy, access-scope mapping, connector settings (no secrets).
 ```
 
 ## Status
 
-Design phase. Nothing is built yet.
+Design phase. Nothing is built yet. The plan is documented in [docs/](docs/README.md).
 
-Design sources: the strategy document "AI-Powered Private Cloud Documentation Platform: Strategy and Architecture" and its "Technical Implementation Addendum". Both are kept outside this repository.
+Design sources: the strategy document (PDF in [docs/source/](docs/source/)) and the Technical Implementation Addendum, whose content is restructured across the docs.
+
+## Documentation
+
+- [Vision and audiences](docs/01-vision-and-audiences.md)
+- [Requirements](docs/02-requirements.md)
+- [Architecture](docs/03-architecture.md)
+- [Content model](docs/04-content-model.md)
+- [Ingestion and AI conversion](docs/05-ingestion-and-ai-conversion.md)
+- [Site design](docs/06-site-design.md)
+- [Learning modes](docs/07-learning-modes.md)
+- [Assistant and local LLM](docs/08-assistant-and-llm.md)
+- [Security and governance](docs/09-security-and-governance.md)
+- [Deployment and CI/CD](docs/10-deployment-and-cicd.md)
+- [Testing and quality](docs/11-testing-and-quality.md)
+- [Design considerations](docs/12-design-considerations.md)
+- [Roadmap](docs/13-roadmap.md)
+- [Risks and open decisions](docs/14-risks-and-open-decisions.md)
+- [Glossary](docs/glossary.md)
 
 Open decisions:
 

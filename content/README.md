@@ -13,6 +13,6 @@ One folder per domain:
 
 Rules:
 
-- Every file has YAML front matter. See `docs/architecture.md`.
+- Every file has YAML front matter. See `docs/04-content-model.md`.
 - Files are created or changed through pull requests from the pipeline or by a person.
 - Raw source material (emails, transcripts, exports) is never committed here.
