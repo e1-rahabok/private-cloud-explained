@@ -15,7 +15,7 @@ Nothing leaves the corporate network. Nothing in the portal talks to vCenter or 
 | Tagging | Assign domain, priority, audience, access scope | Admin input plus rules | Spec |
 | AI conversion | Turn raw text into validated Markdown | Local LLM, prompt templates, JSON Schema | Spec, Addendum |
 | Review | Human approval of AI drafts | Pull requests | Addendum |
-| Content store | Source of truth | Markdown and YAML front matter in private Git | Spec |
+| Content store | Source of truth | Markdown and YAML front matter in Git (your private copy) | Spec |
 | CI/CD | Validate, build, deploy | Organization's CI system | Open (D-017) |
 | Site | Pages, navigation, executive views, mode entry points | Next.js App Router, Tailwind CSS | Spec |
 | Search | Full-text search | Pagefind to start; Meilisearch or Typesense if scope filtering is needed | Proposed |
@@ -27,7 +27,7 @@ Nothing leaves the corporate network. Nothing in the portal talks to vCenter or 
 ## Overview diagram
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph SRC["Sources"]
         S1["Email threads"]
         S2["Meeting transcripts"]
@@ -42,7 +42,7 @@ flowchart LR
         P5["Validate"]
     end
     PR["Pull request and human review"]
-    GIT[("Content in private Git")]
+    GIT[("Content in Git")]
     CI["CI: checks and build"]
     subgraph SERVE["Serve"]
         W["Next.js site"]
@@ -67,7 +67,7 @@ flowchart LR
     MED --> W
 ```
 
-Reading the diagram: sources flow left to right through the pipeline into a pull request. A merge lands the Markdown in Git. CI builds the site, the search index and the media manifests. The site is what readers use. Retrieval reads the index and calls the LLM VM. Everything after the pull request is automated. Everything before the merge ends with a person.
+Reading the diagram: sources flow top to bottom through the pipeline into a pull request. A merge lands the Markdown in Git. CI builds the site, the search index and the media manifests. The site is what readers use. Retrieval reads the index and calls the LLM VM. Everything after the pull request is automated. Everything before the merge ends with a person.
 
 ## Mapping to the original four stages
 
