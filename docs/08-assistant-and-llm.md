@@ -149,6 +149,9 @@ Host choice matters more than VM size. A host with all memory channels populated
 
 ## Serving stack
 
+Step-by-step setup, with commands and checks: [assistant/llm/setup.md](../assistant/llm/setup.md).
+
+- Guest OS: Ubuntu Server 24.04 LTS with `open-vm-tools` (D-029).
 - Engine: llama.cpp `llama-server`, GGUF files, OpenAI-compatible HTTP API, streaming.
 - Quantisation: 4-bit variant first, 5 or 6 bit if quality needs it and memory allows. Chosen in the bake-off.
 - Process: systemd service on the VM. Health endpoint. Restart on failure.
@@ -156,7 +159,7 @@ Host choice matters more than VM size. A host with all memory channels populated
 - Alternatives: Ollama wraps llama.cpp and is easier to operate. A vLLM CPU build exists. Both are options if llama.cpp is unsuitable. Choice recorded in D-005.
 - Embedding model on the same server or a second process with its own memory budget.
 - Model files are stored outside Git (`*.gguf` ignored). Model provenance and checksums are recorded in `assistant/models.md`.
-- The VM has no internet access. Model files arrive through an approved internal transfer.
+- In service, the VM has no outbound internet access (N1). During setup it may have temporary access to download llama.cpp source and model files directly, with checksums verified. Access is removed before go-live. Where no temporary access is allowed, files arrive through an approved internal transfer.
 
 ## Quality control
 

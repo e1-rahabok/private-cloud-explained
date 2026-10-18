@@ -61,6 +61,7 @@ Status: **Open** unless stated. "Needed by" is the phase before which a decision
 | D-026 | Names: portal, assistant | Open | Pick a name for the assistant | Phase 1 |
 | D-027 | Repository model | Public template plus one private copy per student | **Decided.** This repository is the public template. Each student keeps a private copy with their own content and configuration | Closed |
 | D-028 | Visibility of this GitHub repository | Public; private | **Decided: public.** It is a template with no private data. Students' copies are private | Closed |
+| D-029 | Guest OS for the LLM VM | Ubuntu 24.04 LTS; Photon OS; a VKS node pool | **Decided: Ubuntu Server 24.04 LTS on a plain VM, with `open-vm-tools`.** llama.cpp builds and guides target Ubuntu. A plain VM keeps memory reservation, NUMA and hardware version under direct control | Closed |
 
 ## Assumptions to validate in Phase 0
 

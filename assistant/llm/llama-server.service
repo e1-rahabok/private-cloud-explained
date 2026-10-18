@@ -1,0 +1,35 @@
+[Unit]
+Description=llama.cpp server for Ask (chat model)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=llm
+Group=llm
+EnvironmentFile=/etc/llm/llama-server.env
+ExecStart=/opt/llm/bin/llama-server \
+  --model ${LLM_MODEL} \
+  --alias ${LLM_ALIAS} \
+  --host ${LLM_HOST} \
+  --port ${LLM_PORT} \
+  --ctx-size ${LLM_CTX} \
+  --parallel ${LLM_PARALLEL} \
+  --threads ${LLM_THREADS} \
+  --threads-batch ${LLM_THREADS} \
+  --jinja \
+  --reasoning-budget 0 \
+  --mlock \
+  --metrics \
+  --no-webui \
+  --api-key-file /etc/llm/api-key
+Restart=on-failure
+RestartSec=5
+LimitMEMLOCK=infinity
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

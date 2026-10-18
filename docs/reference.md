@@ -44,7 +44,7 @@ Where each ID prefix is defined and used.
 | T1 | Hands-on lab | [02](02-requirements.md), track in [13](13-roadmap.md) | n/a |
 | DC-01 to DC-22 | Design considerations | [12](12-design-considerations.md) | n/a |
 | R-01 to R-20 | Risks | [14](14-risks-and-open-decisions.md) | n/a |
-| D-001 to D-028 | Decisions | [14](14-risks-and-open-decisions.md) | n/a |
+| D-001 to D-029 | Decisions | [14](14-risks-and-open-decisions.md) | n/a |
 
 ## 3. Figures that appear in more than one document
 
