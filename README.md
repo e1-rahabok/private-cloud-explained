@@ -25,7 +25,7 @@ The point is the consumption of the output, not the automation of the input. Aut
 
 | Mode | What the reader gets | Status |
 | --- | --- | --- |
-| Read | Structured pages: architecture, connectivity diagrams, security, SOPs, user guides, install and upgrade guides | Planned |
+| Read | Structured pages: architecture, connectivity diagrams, security, SOPs, user guides, install and upgrade guides, team structure, runbooks, operations plans, decision records | Planned |
 | Search | Full-text search across all content | Planned |
 | Ask | AskIO-style chat that answers from this content and links to the source pages, using a local LLM | Planned |
 | Watch | Video explainers | Planned. Format to be decided |

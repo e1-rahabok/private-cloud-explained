@@ -15,6 +15,10 @@ flowchart TD
     D --> D4["SOPs"]
     D --> D5["User guides"]
     D --> D6["Install and upgrade"]
+    D --> D7["Team structure"]
+    D --> D8["Runbooks"]
+    D --> D9["Operations"]
+    D --> D10["Decisions"]
     L --> L1["Watch"]
     L --> L2["Listen"]
     L --> L3["Play"]
@@ -80,7 +84,8 @@ Static pages built from content, not live data.
 
 - Architecture at a glance: top-level C4 context, with drill-down links.
 - Security baseline status: built from `security-baseline` pages and their control tables.
-- Operations: key SOPs and their review status.
+- Operations: key SOPs, runbooks and operations plans, and their review status.
+- Teams: who owns each domain and service, from `team` pages and the `owner` field.
 - Freshness: how current each domain is, from review dates.
 - Each figure links to its source page. Executives can trace anything they see.
 

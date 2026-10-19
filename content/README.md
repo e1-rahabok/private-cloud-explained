@@ -10,6 +10,10 @@ One folder per domain:
 - `sops/`
 - `user-guides/`
 - `install-upgrade/`
+- `team-structure/` (Proposed)
+- `runbooks/` (Proposed)
+- `operations/` (Proposed)
+- `decisions/` (Proposed)
 
 Rules:
 

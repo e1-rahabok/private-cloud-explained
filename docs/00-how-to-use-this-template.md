@@ -63,7 +63,7 @@ The template cannot know your systems. These are the parts you change.
 | Intranet / wiki | Confluence REST | Write a connector for yours | [Ingestion](05-ingestion-and-ai-conversion.md) |
 | Login (identity) | OIDC or SAML to an IdP such as ADFS or Keycloak, federated to AD | Configure your IdP, client IDs, redirect URIs, group claims | [Security](09-security-and-governance.md) |
 | Access scopes | Scope labels mapped to AD groups | Define your scopes and your group names in `config/` | [Content model](04-content-model.md) |
-| Taxonomy | Six domains, seven doc types | Rename or add domains and types for your environment | [Content model](04-content-model.md) |
+| Taxonomy | Ten domains, eleven doc types (four domains and four types Proposed) | Rename or add domains and types for your environment | [Content model](04-content-model.md) |
 | CI/CD | Generic 9-stage pipeline | Implement the stages in the CI system you already run | [CI/CD](10-deployment-and-cicd.md) |
 | Hosting | Docker Compose on a VM, or Kubernetes | Pick what your platform team supports | [CI/CD](10-deployment-and-cicd.md) |
 | LLM hardware | 16 vCPU, 128 GB RAM, CPU only | Size to your hosts. Measure before you commit | [Assistant](08-assistant-and-llm.md) |

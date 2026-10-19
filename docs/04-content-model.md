@@ -4,7 +4,7 @@ Markdown files with YAML front matter are the source of truth. Every other artif
 
 ## Domains
 
-Content folders match the six deliverable domains from the original strategy.
+Content folders match the six deliverable domains from the original strategy, plus four operational domains (Proposed) that a private-cloud site also needs: team structure, runbooks, operations, and decisions.
 
 | Domain folder | Contents |
 | --- | --- |
@@ -14,6 +14,12 @@ Content folders match the six deliverable domains from the original strategy.
 | `sops` | Standard operating procedures |
 | `user-guides` | Guides for consumers of the private cloud |
 | `install-upgrade` | Installation and upgrade procedures |
+| `team-structure` | Teams, roles, responsibilities (RACI), on-call and escalation paths (Proposed) |
+| `runbooks` | Response to a specific alert, incident or failure (Proposed) |
+| `operations` | Disaster recovery, business continuity, change management, maintenance windows, monitoring and alerting, capacity planning (Proposed) |
+| `decisions` | Architecture decision records (Proposed) |
+
+The first six folders come from the strategy document. The last four are Proposed additions. Remove any your environment does not need.
 
 ## Document types
 
@@ -26,6 +32,37 @@ Content folders match the six deliverable domains from the original strategy.
 | `install-upgrade` | Install or upgrade runbook | Prerequisites, Steps, Verification, Rollback, Known issues |
 | `security-baseline` | A control set and its status | Scope, Controls, Evidence, Exceptions |
 | `decision` | An architecture decision record | Context, Decision, Alternatives, Consequences |
+| `team` | A team or role: what it owns and how to reach it (Proposed) | Purpose, Responsibilities, Services owned, RACI, On-call and escalation, Contacts |
+| `runbook` | Response to one alert, incident or failure (Proposed) | Trigger, Impact, Diagnosis, Actions, Escalation, Verification, Follow-up |
+| `operations-plan` | A standing operational plan: DR, change, monitoring, capacity (Proposed) | Scope, Objectives, Roles, Procedure, Testing, Review |
+| `service` | A service catalog entry for consumers (Proposed) | Description, Audience, How to request, Service levels, Support |
+
+### Which type goes where
+
+| `doc_type` | Usual domain |
+| --- | --- |
+| `overview` | Any domain |
+| `architecture` | `infrastructure-architecture`, `connectivity-diagrams` |
+| `sop` | `sops` |
+| `guide`, `service` | `user-guides` |
+| `install-upgrade` | `install-upgrade` |
+| `security-baseline` | `security` |
+| `decision` | `decisions` |
+| `team` | `team-structure` |
+| `runbook` | `runbooks` |
+| `operations-plan` | `operations` |
+
+### SOP or runbook
+
+- An SOP is planned, routine work. It starts on a schedule or a request. Example: patch a host cluster, add a datastore.
+- A runbook is unplanned work. It starts with an alert or a symptom. Example: datastore latency alarm, vCenter service down.
+- A runbook can call an SOP for a step. It links to it. It does not copy it.
+
+### Team pages and personal data
+
+- Team pages name teams, roles, distribution lists, queues and on-call rotation names.
+- They do not hold personal phone numbers, home details or other personal data. The policy scan applies.
+- Where a person must be named, use the directory handle. The directory stays the source of truth for contact details.
 
 The heading linter (see [deployment](10-deployment-and-cicd.md)) enforces the required sections per type. Section lists are Proposed and are tuned in Phase 0.
 

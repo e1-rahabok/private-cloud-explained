@@ -94,6 +94,8 @@ Failure blocks the build.
 | AI-drafted page | Domain owner or delegate | Pull request approval, checklist |
 | Human-authored page | A second person | Pull request approval |
 | Security baseline page | Security team plus owner | Two approvals |
+| Team page | Lead of that team | Pull request approval (Proposed) |
+| Runbook | Owning team plus on-call representative | Pull request approval (Proposed) |
 | Derived media | Content owner | Manifest `reviewed_by` |
 | Prompt or model change | Platform owner plus evaluation result | Pull request with evaluation attached |
 
