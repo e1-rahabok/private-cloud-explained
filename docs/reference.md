@@ -44,7 +44,7 @@ Where each ID prefix is defined and used.
 | T1 | Hands-on lab | [02](02-requirements.md), track in [13](13-roadmap.md) | n/a |
 | DC-01 to DC-22 | Design considerations | [12](12-design-considerations.md) | n/a |
 | R-01 to R-20 | Risks | [14](14-risks-and-open-decisions.md) | n/a |
-| D-001 to D-030 | Decisions | [14](14-risks-and-open-decisions.md) | n/a |
+| D-001 to D-031 | Decisions | [14](14-risks-and-open-decisions.md) | n/a |
 
 ## 3. Figures that appear in more than one document
 
@@ -60,8 +60,9 @@ If one changes, change all of them.
 | Staging retention | 30 days (Proposed) | 05, 09 |
 | Chat log retention | 90 days (Proposed) | 09 |
 | Front matter fields | See table | 04 (definition), 05 (validation), 11 (checks), 10 (stage 2) |
-| Domains | 10 (6 from strategy, 4 Proposed) | 04 (definition), 06 (navigation), 00, content/README |
-| Doc types | 11 (7 original, 4 Proposed) | 04 (definition), 00 |
+| Domains | 13 (6 from strategy, 7 Proposed) | 04 (definition), 06 (navigation), 15, 00, content/README |
+| Doc types | 16 (7 original, 9 Proposed) | 04 (definition), 15, 00 |
+| Audience tiers | 2: `colleagues`, `infra-team` | 04, 09 (definition), 15, 06, config/access-scopes.example.yaml |
 
 ## 4. Source to documentation map
 

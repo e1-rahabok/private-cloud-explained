@@ -4,7 +4,7 @@ Markdown files with YAML front matter are the source of truth. Every other artif
 
 ## Domains
 
-Content folders match the six deliverable domains from the original strategy, plus four operational domains (Proposed) that a private-cloud site also needs: team structure, runbooks, operations, and decisions.
+Content folders match the six deliverable domains from the original strategy, plus seven domains (Proposed) that a private-cloud site also needs: team structure, runbooks, operations, decisions, inventory, service management and lifecycle. [Documentation set](15-documentation-set.md) lists what goes in each.
 
 | Domain folder | Contents |
 | --- | --- |
@@ -18,8 +18,11 @@ Content folders match the six deliverable domains from the original strategy, pl
 | `runbooks` | Response to a specific alert, incident or failure (Proposed) |
 | `operations` | Disaster recovery, business continuity, change management, maintenance windows, monitoring and alerting, capacity planning (Proposed) |
 | `decisions` | Architecture decision records (Proposed) |
+| `inventory` | What exists: components, bill of materials, shared services, automation (Proposed) |
+| `service-management` | Incident, problem, change and request processes, walkthroughs, post-incident reviews (Proposed) |
+| `lifecycle` | Versions, end of support, licences, certificates, patch calendar, refresh roadmap (Proposed) |
 
-The first six folders come from the strategy document. The last four are Proposed additions. Remove any your environment does not need.
+The first six folders come from the strategy document. The last seven are Proposed additions. Remove any your environment does not need.
 
 ## Document types
 
@@ -36,6 +39,11 @@ The first six folders come from the strategy document. The last four are Propose
 | `runbook` | Response to one alert, incident or failure (Proposed) | Trigger, Impact, Diagnosis, Actions, Escalation, Verification, Follow-up |
 | `operations-plan` | A standing operational plan: DR, change, monitoring, capacity (Proposed) | Scope, Objectives, Roles, Procedure, Testing, Review |
 | `service` | A service catalog entry for consumers (Proposed) | Description, Audience, How to request, Service levels, Support |
+| `component` | One system or appliance (Proposed) | Purpose, Owner, Version, Dependencies, Consumers, Failure impact, Related procedures |
+| `bom` | A register of products, versions, licences or expiry dates (Proposed) | Scope, Register, Compatibility, Support status, Source export |
+| `failure-mode` | What fails and what it breaks (Proposed) | Failure domain, Impact, Detection, Recovery, Related runbooks |
+| `walkthrough` | One end-to-end flow through the environment (Proposed) | Scenario, Steps across layers, Teams involved, Related |
+| `post-incident-review` | What failed, why, and what changed (Proposed) | Summary, Timeline, Impact, Cause, Actions, Lessons |
 
 ### Which type goes where
 
@@ -50,7 +58,11 @@ The first six folders come from the strategy document. The last four are Propose
 | `decision` | `decisions` |
 | `team` | `team-structure` |
 | `runbook` | `runbooks` |
-| `operations-plan` | `operations` |
+| `operations-plan` | `operations`, `service-management`, `lifecycle` |
+| `component` | `inventory` |
+| `bom` | `inventory`, `lifecycle` |
+| `failure-mode` | `infrastructure-architecture` |
+| `walkthrough`, `post-incident-review` | `service-management` |
 
 ### SOP or runbook
 
@@ -96,7 +108,7 @@ doc_type: architecture
 domain: infrastructure-architecture
 priority: high
 audience: [admin, engineer]
-access_scope: platform-team
+access_scope: infra-team
 sources:
   - type: confluence
     id: "123456"
@@ -135,6 +147,7 @@ The example is illustrative. It uses invented values.
 - Admins define the taxonomy in `config/taxonomy.yaml`: domains, doc types, tags, audiences.
 - `config/access-scopes.yaml` maps each `access_scope` value to one or more AD groups.
 - An unknown scope fails validation. A missing scope fails validation. There is no default of "open".
+- Two standard scopes (D-031): `colleagues` for every authenticated employee, `infra-team` for the infrastructure team only. See [documentation set](15-documentation-set.md#two-audience-tiers) for what goes in each.
 
 ## Conventions for content
 
@@ -143,7 +156,8 @@ The example is illustrative. It uses invented values.
 - C4: context, container and component views each get their own diagram.
 - TOGAF: business, data, application and technology architecture sections appear where relevant.
 - Terms defined in the [glossary](glossary.md) are used consistently.
-- No credentials, tokens, IP addresses of sensitive systems, or personal data. The policy scan enforces what it can.
+- No credentials, tokens, private keys or personal data in any scope.
+- Internal IP addresses, hostnames and VLAN IDs only in `infra-team` scope (or another scope that allows them). The policy scan enforces what it can.
 
 ## Lineage
 

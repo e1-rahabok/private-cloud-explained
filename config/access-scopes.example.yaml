@@ -1,0 +1,22 @@
+# Example access-scope mapping. Copy to access-scopes.yaml in your private copy.
+# Group names are invented. Replace them with your AD groups.
+# A page's access_scope must be one of these keys. There is no default scope.
+
+colleagues:
+  description: Every authenticated employee
+  groups:
+    - "Domain Users"
+
+infra-team:
+  description: Infrastructure team only
+  groups:
+    - "GG-Infra-Team"
+  # Content rules for this scope. See docs/09-security-and-governance.md.
+  allow_internal_addresses: true
+
+# Optional narrower scope.
+# security-team:
+#   description: Security team only
+#   groups:
+#     - "GG-Security"
+#   allow_internal_addresses: true

@@ -10,6 +10,8 @@
 | Ask | The chat mode of this portal |
 | AVX-512 | A CPU instruction set that speeds up vector math |
 | Bake-off | A side-by-side test of candidate models on the same questions |
+| Blast radius | Everything that breaks when one component fails |
+| BOM | Bill of materials. Every product and version in the environment |
 | Branch protection | Git rules that block direct pushes and require review |
 | C4 model | A way to describe software architecture at four levels: context, containers, components, code |
 | CI | Continuous integration. Automatic checks on every change |
@@ -21,6 +23,7 @@
 | Derived asset | A video, audio file, quiz or game scenario built from a page |
 | DR | Disaster recovery. Restoring service after a major failure |
 | EVC | Enhanced vMotion Compatibility. A vSphere setting that can hide newer CPU features |
+| Failure domain | A group of components that fail together, such as a host, rack or site |
 | Front matter | The YAML block at the top of a Markdown file with metadata |
 | GGUF | A file format for model weights used by llama.cpp |
 | GFM | GitHub Flavored Markdown |
@@ -36,17 +39,22 @@
 | On-call | The person or rotation that answers alerts out of hours |
 | Origin | Whether a page was written by a human, drafted by AI, or both |
 | Policy scan | A CI check for secrets and disallowed content |
+| Post-incident review | A record of what failed, why, and what changed |
 | Prompt processing | The step where the model reads the input before answering. Also called prefill |
 | Pull request | A proposed change in Git that others review before merge |
 | Quantisation | Storing model weights at lower precision to save memory |
 | RACI | Responsible, Accountable, Consulted, Informed. A table of who does what |
 | RAG | Retrieval-augmented generation. Fetch relevant text, then have the model answer from it |
 | Retrieval practice | Learning by recalling information rather than rereading it |
+| RPO | Recovery point objective. How much data loss is acceptable |
+| RTO | Recovery time objective. How long a restore may take |
 | Reranker | A model that reorders search results by relevance |
 | Runner | The machine that executes CI jobs |
 | Runbook | Steps to respond to one alert, incident or failure. Unplanned work |
 | SAML | A sign-in protocol |
 | Service catalog | The list of services the private cloud offers its consumers |
+| SLA | Service level agreement. A promised service level |
+| SLO | Service level objective. An internal target for a service level |
 | SSG | Static site generation |
 | SSO | Single sign-on |
 | SOP | Standard operating procedure. Steps for planned, routine work |

@@ -12,6 +12,21 @@
 
 Content in the portal is derived from internal sources. The sensitivity of the production corpus is decided by the data owner (D-020). Until then, treat it as internal and restricted.
 
+## Audience tiers
+
+The site is internal documentation for colleagues. The infrastructure team also has its own documentation that only it can see (D-031).
+
+| Scope | Readers | May contain | Never contains |
+| --- | --- | --- | --- |
+| `colleagues` | Every authenticated employee | Overviews, service catalog, user guides, team pages, summarised status | Internal addresses, hostnames, VLAN IDs, detailed procedures, vulnerability detail |
+| `infra-team` | Infrastructure team AD group | Everything above, plus inventory, IP plans, procedures, runbooks, incident reviews, contract detail | Credentials, tokens, private keys, personal data |
+
+- The policy scan runs per scope. Address and hostname patterns fail the build in `colleagues` pages and pass in `infra-team` pages.
+- A page moving from `infra-team` to `colleagues` needs approval from the infrastructure team lead.
+- Derived media, search records and Ask passages inherit the scope of their page.
+- Executive views use `colleagues` pages only.
+- Access to `infra-team` pages is logged (Proposed).
+
 | Data | Where | Classification handling |
 | --- | --- | --- |
 | Raw ingested material | `pipeline/staging`, not in Git | Restricted. Retention-limited. Deleted after the retention period |
@@ -96,6 +111,7 @@ Failure blocks the build.
 | Security baseline page | Security team plus owner | Two approvals |
 | Team page | Lead of that team | Pull request approval (Proposed) |
 | Runbook | Owning team plus on-call representative | Pull request approval (Proposed) |
+| Scope change from `infra-team` to `colleagues` | Infrastructure team lead | Pull request approval (Proposed) |
 | Derived media | Content owner | Manifest `reviewed_by` |
 | Prompt or model change | Platform owner plus evaluation result | Pull request with evaluation attached |
 

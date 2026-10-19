@@ -10,6 +10,7 @@ One private-cloud knowledge base, many ways to learn it: read, search, ask, watc
 - You follow this repository, study it, and build **your own** application.
 - Your application is **100% private**. It runs only on your private cloud, not on the internet. That is why the chat model is a local LLM.
 - The output is a real website in the style of [isvara.io](https://isvara.io), hosted inside your network.
+- The site is internal documentation for colleagues. A restricted area is visible only to the infrastructure team. See [Documentation set](docs/15-documentation-set.md).
 - This repository contains **no private data**. Everything here is public.
 
 ## Start here
