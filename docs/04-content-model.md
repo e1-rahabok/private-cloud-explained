@@ -4,7 +4,7 @@ Markdown files with YAML front matter are the source of truth. Every other artif
 
 ## Domains
 
-Content folders match the six deliverable domains from the original strategy, plus seven domains (Proposed) that a private-cloud site also needs: team structure, runbooks, operations, decisions, inventory, service management and lifecycle. [Documentation set](15-documentation-set.md) lists what goes in each.
+Content folders match the six deliverable domains from the original strategy, plus eight domains (Proposed) that a private-cloud site also needs: team structure, runbooks, operations, decisions, inventory, service management, lifecycle and executive. [Documentation set](15-documentation-set.md) lists what goes in each.
 
 | Domain folder | Contents |
 | --- | --- |
@@ -21,8 +21,9 @@ Content folders match the six deliverable domains from the original strategy, pl
 | `inventory` | What exists: components, bill of materials, shared services, automation (Proposed) |
 | `service-management` | Incident, problem, change and request processes, walkthroughs, post-incident reviews (Proposed) |
 | `lifecycle` | Versions, end of support, licences, certificates, patch calendar, refresh roadmap (Proposed) |
+| `executive` | Executive summary and its metrics register (Proposed) |
 
-The first six folders come from the strategy document. The last seven are Proposed additions. Remove any your environment does not need.
+The first six folders come from the strategy document. The last eight are Proposed additions. Remove any your environment does not need.
 
 ## Document types
 
@@ -44,6 +45,7 @@ The first six folders come from the strategy document. The last seven are Propos
 | `failure-mode` | What fails and what it breaks (Proposed) | Failure domain, Impact, Detection, Recovery, Related runbooks |
 | `walkthrough` | One end-to-end flow through the environment (Proposed) | Scenario, Steps across layers, Teams involved, Related |
 | `post-incident-review` | What failed, why, and what changed (Proposed) | Summary, Timeline, Impact, Cause, Actions, Lessons |
+| `executive-summary` | The visual leadership view (Proposed) | Status, Decisions needed, System map, Capacity, Operations, Security, Resilience, Lifecycle, Cost, Risks, Team |
 
 ### Which type goes where
 
@@ -63,6 +65,7 @@ The first six folders come from the strategy document. The last seven are Propos
 | `bom` | `inventory`, `lifecycle` |
 | `failure-mode` | `infrastructure-architecture` |
 | `walkthrough`, `post-incident-review` | `service-management` |
+| `executive-summary` | `executive` |
 
 ### SOP or runbook
 
@@ -147,7 +150,7 @@ The example is illustrative. It uses invented values.
 - Admins define the taxonomy in `config/taxonomy.yaml`: domains, doc types, tags, audiences.
 - `config/access-scopes.yaml` maps each `access_scope` value to one or more AD groups.
 - An unknown scope fails validation. A missing scope fails validation. There is no default of "open".
-- Two standard scopes (D-031): `colleagues` for every authenticated employee, `infra-team` for the infrastructure team only. See [documentation set](15-documentation-set.md#two-audience-tiers) for what goes in each.
+- Two standard scopes (D-031): `colleagues` for every authenticated employee, `infra-team` for the infrastructure team only. The CIO and leadership read every scope. See [documentation set](15-documentation-set.md#two-audience-tiers) for what goes in each.
 
 ## Conventions for content
 

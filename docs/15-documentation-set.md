@@ -15,6 +15,8 @@ The site is internal. Every reader is a signed-in colleague. Inside the site the
 | Colleagues | `colleagues` | Every authenticated employee | Understand the private cloud, use its services, know who to ask |
 | Infrastructure team | `infra-team` | Members of the infrastructure team's AD group | Build, run, fix and change the private cloud |
 
+The CIO and leadership delegates see both tiers. See [executive summary](16-executive-summary.md).
+
 - Both tiers live on one site. Pages in `infra-team` are invisible to everyone else: in navigation, search, Ask and derived media (S2).
 - A colleague who opens an `infra-team` URL gets the same response as for a missing page.
 - More scopes can be added, for example `security-team` for vulnerability detail. See [`config/access-scopes.example.yaml`](../config/access-scopes.example.yaml).
@@ -42,7 +44,7 @@ Most systems need both a colleague view and a team view. Write two pages and lin
 - `infrastructure-architecture/storage.md`, scope `colleagues`: what storage exists, which tiers, what it is for.
 - `inventory/storage-arrays.md`, scope `infra-team`: models, firmware, datastores, replication pairs, support contracts.
 
-The colleague page shows the link only to users who can open the target (Proposed). Executive views are built from `colleagues` pages only. Facts that leadership needs from team pages get a summarised colleague page.
+The colleague page shows the link only to users who can open the target (Proposed). The executive summary draws on both tiers.
 
 ## The checklist
 
@@ -127,6 +129,7 @@ Each row says where the page lives, its usual doc type and its default tier. "C"
 
 Write these first. They give a reader the full picture fastest.
 
+0. **Executive summary.** Visual, one screen, every tier. CIO and leadership. See [executive summary](16-executive-summary.md).
 1. **System map.** One diagram, facility to tenants. Colleagues.
 2. **Life of a VM request.** One end-to-end walkthrough through every layer and team. Colleagues.
 3. **Dependency graph.** Infrastructure team.
@@ -145,6 +148,7 @@ Some facts are tables, not prose. Keep them as YAML next to the page and let the
 | Licence and contract register | `content/lifecycle/licences.yaml` | I |
 | Certificate expiry register | `content/lifecycle/certificates.yaml` | I |
 | Alarm catalog | `content/operations/alarms.yaml` | I |
+| Executive metrics | `content/executive/metrics.yaml` | I |
 
 The file carries the same front matter fields as a page, including `access_scope`. The schema check validates it (Proposed).
 

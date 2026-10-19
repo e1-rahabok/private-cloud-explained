@@ -63,7 +63,8 @@ Status: **Open** unless stated. "Needed by" is the phase before which a decision
 | D-028 | Visibility of this GitHub repository | Public; private | **Decided: public.** It is a template with no private data. Students' copies are private | Closed |
 | D-029 | Guest OS for the LLM VM | Ubuntu 24.04 LTS; Photon OS; a VKS node pool | **Decided: Ubuntu Server 24.04 LTS on a plain VM, with `open-vm-tools`.** llama.cpp builds and guides target Ubuntu. A plain VM keeps memory reservation, NUMA and hardware version under direct control | Closed |
 | D-030 | Operational domains beyond the strategy's six | Keep six; add team structure, runbooks, operations, decisions | Add all four. Remove any not needed | Phase 0 |
-| D-031 | Audience tiers | One scope for all; colleagues plus infrastructure team; separate sites | **Decided: one internal site for colleagues, with an `infra-team` scope only the infrastructure team can see.** Separate sites remain an option if isolation must be stronger | Closed |
+| D-031 | Audience tiers | One scope for all; colleagues plus infrastructure team; separate sites | **Decided: one internal site for colleagues, with an `infra-team` scope only the infrastructure team can see. The CIO and leadership see every scope.** Separate sites remain an option if isolation must be stronger | Closed |
+| D-032 | Chart component for the executive summary | Mermaid only; Apache ECharts; Vega-Lite; Recharts | Mermaid for maps, timelines and quadrants. One bundled chart library for tiles, gauges and sparklines. Served locally, no CDN (N1) | Phase 1 |
 
 ## Assumptions to validate in Phase 0
 

@@ -2,6 +2,10 @@
 # Group names are invented. Replace them with your AD groups.
 # A page's access_scope must be one of these keys. There is no default scope.
 
+# Groups that may read every scope. The CIO and leadership delegates.
+all_scopes_groups:
+  - "GG-IT-Leadership"
+
 colleagues:
   description: Every authenticated employee
   groups:

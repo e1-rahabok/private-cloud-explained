@@ -42,7 +42,7 @@ Navigation principles:
 | Route | Content | Rendering |
 | --- | --- | --- |
 | `/` | Home | Static |
-| `/exec` | Executive overview | Static |
+| `/exec` | Executive summary: tiles, system map, charts | Static, charts from `content/executive/metrics.yaml` |
 | `/docs/[domain]` | Domain index | Static |
 | `/docs/[domain]/[...slug]` | Document page | Static, from `generateStaticParams` |
 | `/learn` | Modes hub | Static |
@@ -85,7 +85,7 @@ Navigation principles:
 
 ## Executive views (F10)
 
-Static pages built from content, not live data.
+Static pages built from content, not live data. The main view is the visual [executive summary](16-executive-summary.md) at `/exec`. The CIO sees every tier.
 
 - Architecture at a glance: top-level C4 context, with drill-down links.
 - Security baseline status: built from `security-baseline` pages and their control tables.

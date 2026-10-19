@@ -17,6 +17,7 @@ One folder per domain:
 - `inventory/` (Proposed)
 - `service-management/` (Proposed)
 - `lifecycle/` (Proposed)
+- `executive/` (Proposed)
 
 Rules:
 

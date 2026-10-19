@@ -19,6 +19,7 @@ Status labels: **Spec** = original strategy document. **Addendum** = technical i
 | F11 | Every derived asset (video, audio, quiz, game scenario) records its source page and version. Assets are flagged when the page changes | Proposed |
 | F12 | Each page shows which modes exist for it and links to them | Proposed |
 | F13 | A review workflow: AI drafts arrive as pull requests with the source shown beside the draft | Addendum |
+| F14 | A visual executive summary: status tiles, system map, charts, decisions needed. Every figure shows its as-of date and links to its source. Built from all tiers for leadership | Request |
 
 ## Non-functional requirements
 
@@ -56,6 +57,7 @@ Status labels: **Spec** = original strategy document. **Addendum** = technical i
 | S3 | The assistant treats retrieved text as untrusted data and has no tools | Proposed |
 | S4 | Ingested material is scanned for credentials and sensitive data before AI processing and before commit | Proposed |
 | S5 | Connector service accounts are read-only and least-privilege. Credentials sit in a secrets store | Addendum |
+| S6 | The CIO and leadership delegates read every scope through one small, reviewed group | Request |
 
 ## Project requirement
 
@@ -95,7 +97,7 @@ Each phase in the [roadmap](13-roadmap.md) lists testable exit criteria. Cross-c
 | Taxonomy and role mapping | F2 |
 | C4 and TOGAF conversion | F3 |
 | Search, sidebar, table of contents, lineage | F4 |
-| Executive dashboards and technical deep-dives | F10, F4 |
+| Executive dashboards and technical deep-dives | F10, F14, F4 |
 | Operate inside the intranet perimeter | N1 |
 | SSO and Active Directory | N2, S1 |
 | Sub-second loads via SSG or ISR | N3 |

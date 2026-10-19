@@ -62,8 +62,8 @@ The template cannot know your systems. These are the parts you change.
 | Email system | IMAP or Microsoft Graph | Choose the interface your mail system offers | [Ingestion](05-ingestion-and-ai-conversion.md) |
 | Intranet / wiki | Confluence REST | Write a connector for yours | [Ingestion](05-ingestion-and-ai-conversion.md) |
 | Login (identity) | OIDC or SAML to an IdP such as ADFS or Keycloak, federated to AD | Configure your IdP, client IDs, redirect URIs, group claims | [Security](09-security-and-governance.md) |
-| Access scopes | `colleagues` and `infra-team`, mapped to AD groups | Define your scopes and your group names in `config/` | [Content model](04-content-model.md) |
-| Taxonomy | Thirteen domains, sixteen doc types (seven domains and nine types Proposed) | Rename or add domains and types for your environment | [Content model](04-content-model.md) |
+| Access scopes | `colleagues` and `infra-team`, mapped to AD groups, plus a leadership group that reads all | Define your scopes and your group names in `config/` | [Content model](04-content-model.md) |
+| Taxonomy | Fourteen domains, seventeen doc types (eight domains and ten types Proposed) | Rename or add domains and types for your environment | [Content model](04-content-model.md) |
 | CI/CD | Generic 9-stage pipeline | Implement the stages in the CI system you already run | [CI/CD](10-deployment-and-cicd.md) |
 | Hosting | Docker Compose on a VM, or Kubernetes | Pick what your platform team supports | [CI/CD](10-deployment-and-cicd.md) |
 | LLM hardware | 16 vCPU, 128 GB RAM, CPU only | Size to your hosts. Measure before you commit | [Assistant](08-assistant-and-llm.md) |
