@@ -100,7 +100,7 @@ Seven layers from facility to tenants. Hardware needs action because of end of s
 ```mermaid
 xychart-beta
     title "CPU used, % of cluster capacity (invented)"
-    x-axis [Q1, Q2, Q3, Q4, Q1, Q2]
+    x-axis ["Q1 26", "Q2 26", "Q3 26", "Q4 26", "Q1 27", "Q2 27"]
     y-axis "Percent" 0 --> 100
     bar [61, 66, 70, 74, 78, 82]
     line [85, 85, 85, 85, 85, 85]
