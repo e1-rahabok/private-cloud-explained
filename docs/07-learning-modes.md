@@ -94,7 +94,7 @@ The game concepts below are **proposals** for discussion. None is decided (D-016
 
 | Concept | Idea | Learns |
 | --- | --- | --- |
-| Incident desk | Text scenario: an alert arrives, the player chooses diagnostic steps and gets consequences. Steps map to SOPs | SOP use, troubleshooting order |
+| Incident desk | Text scenario: an alert arrives, the player chooses diagnostic steps and gets consequences. Steps map to runbooks and SOPs | SOP use, troubleshooting order |
 | Change window | Sequence upgrade steps in the right order, with prerequisite traps | Install and upgrade procedures |
 | Architecture builder | Place components on a canvas to meet requirements. Checked against the reference design | Reference architecture, dependencies |
 | Security baseline hunt | Spot control gaps in a described configuration | Security baselines |

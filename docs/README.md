@@ -18,7 +18,9 @@ Complete plan for the Private Cloud Explained template. No code exists yet. **St
 | 11 | [Testing and quality](11-testing-and-quality.md) | Test layers, evaluation set, requirement-to-test map |
 | 12 | [Design considerations](12-design-considerations.md) | Evidence-based design choices (DC-01 to DC-22) |
 | 13 | [Roadmap](13-roadmap.md) | Phases, exit criteria, lab track |
-| 14 | [Risks and open decisions](14-risks-and-open-decisions.md) | R-01 to R-20, D-001 to D-028 |
+| 14 | [Risks and open decisions](14-risks-and-open-decisions.md) | R-01 to R-20, D-001 to D-032 |
+| 15 | [Documentation set](15-documentation-set.md) | What to document about the private cloud, audience tiers, checklist |
+| 16 | [Executive summary](16-executive-summary.md) | Visual one-screen view for the CIO: tiles, system map, charts, risks |
 | - | [Reference](reference.md) | Diagram index, ID index, cross-checks |
 | - | [Glossary](glossary.md) | Terms |
 | - | [Source: strategy PDF](source/AI-Powered_Private_Cloud_Documentation_Platform_-_Strategy__Architecture.pdf) | Original strategy document |

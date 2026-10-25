@@ -44,7 +44,7 @@ The people who **build** the site are VMware admins and infrastructure architect
 
 | Audience | Needs | Likely modes | Origin |
 | --- | --- | --- | --- |
-| CIO and senior leadership | A trustworthy overview, security baselines, evidence of operational control. Little time. Able to drill down. | Read (summary), Listen, Watch, executive views | Original strategy |
+| CIO and senior leadership | A trustworthy overview, security baselines, evidence of operational control. Little time. Able to drill down. Sees every tier | Visual [executive summary](16-executive-summary.md), Listen, Watch | Original strategy |
 | VMware and private cloud administrators | Exact procedures, installation and upgrade steps, quick answers, a way to keep skills current | Search, Ask, Read, Quiz, Play | Original strategy |
 | New joiners and adjacent teams | A guided route into the environment | All modes | Proposed |
 | Security and audit reviewers | Baselines, lineage, change history | Read, Search | Proposed |

@@ -10,6 +10,7 @@ One private-cloud knowledge base, many ways to learn it: read, search, ask, watc
 - You follow this repository, study it, and build **your own** application.
 - Your application is **100% private**. It runs only on your private cloud, not on the internet. That is why the chat model is a local LLM.
 - The output is a real website in the style of [isvara.io](https://isvara.io), hosted inside your network.
+- The site is internal documentation for colleagues. A restricted area is visible only to the infrastructure team. See [Documentation set](docs/15-documentation-set.md).
 - This repository contains **no private data**. Everything here is public.
 
 ## Start here
@@ -25,7 +26,7 @@ The point is the consumption of the output, not the automation of the input. Aut
 
 | Mode | What the reader gets | Status |
 | --- | --- | --- |
-| Read | Structured pages: architecture, connectivity diagrams, security, SOPs, user guides, install and upgrade guides | Planned |
+| Read | Structured pages: architecture, connectivity diagrams, security, SOPs, user guides, install and upgrade guides, team structure, runbooks, operations plans, decision records | Planned |
 | Search | Full-text search across all content | Planned |
 | Ask | AskIO-style chat that answers from this content and links to the source pages, using a local LLM | Planned |
 | Watch | Video explainers | Planned. Format to be decided |

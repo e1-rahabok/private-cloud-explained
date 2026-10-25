@@ -15,6 +15,13 @@ flowchart TD
     D --> D4["SOPs"]
     D --> D5["User guides"]
     D --> D6["Install and upgrade"]
+    D --> D7["Team structure"]
+    D --> D8["Runbooks"]
+    D --> D9["Operations"]
+    D --> D10["Decisions"]
+    D --> D11["Inventory"]
+    D --> D12["Service management"]
+    D --> D13["Lifecycle"]
     L --> L1["Watch"]
     L --> L2["Listen"]
     L --> L3["Play"]
@@ -27,13 +34,15 @@ Navigation principles:
 - Domains are the primary structure. Modes are a second route into the same content.
 - Search and Ask are reachable from every page.
 - Every document page links to its available modes (F12).
+- Navigation is built per tier (D-031). Colleagues see only `colleagues` pages. Infrastructure team members also see an "Infrastructure team" badge on restricted pages and a filter for them.
+- A domain with no visible pages for the user is hidden.
 
 ## Routes
 
 | Route | Content | Rendering |
 | --- | --- | --- |
 | `/` | Home | Static |
-| `/exec` | Executive overview | Static |
+| `/exec` | Executive summary: tiles, system map, charts | Static, charts from `content/executive/metrics.yaml` |
 | `/docs/[domain]` | Domain index | Static |
 | `/docs/[domain]/[...slug]` | Document page | Static, from `generateStaticParams` |
 | `/learn` | Modes hub | Static |
@@ -76,11 +85,12 @@ Navigation principles:
 
 ## Executive views (F10)
 
-Static pages built from content, not live data.
+Static pages built from content, not live data. The main view is the visual [executive summary](16-executive-summary.md) at `/exec`. The CIO sees every tier.
 
 - Architecture at a glance: top-level C4 context, with drill-down links.
 - Security baseline status: built from `security-baseline` pages and their control tables.
-- Operations: key SOPs and their review status.
+- Operations: key SOPs, runbooks and operations plans, and their review status.
+- Teams: who owns each domain and service, from `team` pages and the `owner` field.
 - Freshness: how current each domain is, from review dates.
 - Each figure links to its source page. Executives can trace anything they see.
 
@@ -94,6 +104,7 @@ See [architecture](03-architecture.md) for engine choice.
 - Results show title, domain, snippet with highlight, doc type, and freshness.
 - Filters: domain, doc type, audience.
 - Results only include pages the user may see (S2).
+- With a static index (Pagefind), build one index per scope set and let the proxy serve the right one. Otherwise use a server-side engine with a scope filter (D-007).
 - Empty-state offers "Ask the assistant" with the query prefilled.
 
 ## Ask experience

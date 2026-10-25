@@ -16,6 +16,12 @@ Indexes and cross-checks. Use this to find an item and to confirm the documents 
 | 6 | Ask request flow | Sequence diagram | [08 Assistant, "Request flow"](08-assistant-and-llm.md#request-flow) | User, site, authorization, retrieval, LLM |
 | 7 | Build and deploy | Flowchart | [10 Deployment, "Build and deploy flow"](10-deployment-and-cicd.md#build-and-deploy-flow) | The 9 CI/CD stages |
 | 8 | Phases | Flowchart | [13 Roadmap (top)](13-roadmap.md) | Phase 0 to Phase 4 |
+| 9 | Executive page layout | Flowchart | [16 Executive summary, "Page layout"](16-executive-summary.md#page-layout) | Tiles, decisions, system map, themed sections |
+| 10 | System map | Flowchart | [16 Executive summary, "System map"](16-executive-summary.md#system-map) | Seven layers with status words |
+| 11 | Capacity runway | XY chart | [16 Executive summary, "Capacity runway"](16-executive-summary.md#capacity-runway) | CPU use against threshold |
+| 12 | Operations health | XY chart | [16 Executive summary, "Operations health"](16-executive-summary.md#operations-health) | Incidents per month |
+| 13 | Lifecycle roadmap | Gantt | [16 Executive summary, "Lifecycle roadmap"](16-executive-summary.md#lifecycle-roadmap) | End of support, planned work, renewals |
+| 14 | Top risks | Quadrant chart | [16 Executive summary, "Top risks"](16-executive-summary.md#top-risks) | Likelihood by impact |
 
 Verification status:
 
@@ -23,6 +29,7 @@ Verification status:
 | --- | --- | --- |
 | 1 | Yes | Yes (author's screenshot) |
 | 2 to 8 | Yes | Not yet confirmed |
+| 9 to 14 | Yes (Mermaid 11.x, headless Chromium) | Not yet confirmed |
 
 Diagram rules for contributors:
 
@@ -37,14 +44,14 @@ Where each ID prefix is defined and used.
 | Prefix | Meaning | Defined in | Tested in |
 | --- | --- | --- | --- |
 | G1 to G6 | Goals | [01](01-vision-and-audiences.md) | n/a |
-| F1 to F13 | Functional | [02](02-requirements.md) | [11, requirement-to-test map](11-testing-and-quality.md) |
+| F1 to F14 | Functional | [02](02-requirements.md) | [11, requirement-to-test map](11-testing-and-quality.md) |
 | N1 to N10 | Non-functional | [02](02-requirements.md) | [11](11-testing-and-quality.md) |
 | I1 to I7 | Infrastructure | [02](02-requirements.md) | [11](11-testing-and-quality.md) |
-| S1 to S5 | Security | [02](02-requirements.md), detail in [09](09-security-and-governance.md) | [11](11-testing-and-quality.md) |
+| S1 to S6 | Security | [02](02-requirements.md), detail in [09](09-security-and-governance.md) | [11](11-testing-and-quality.md) |
 | T1 | Hands-on lab | [02](02-requirements.md), track in [13](13-roadmap.md) | n/a |
 | DC-01 to DC-22 | Design considerations | [12](12-design-considerations.md) | n/a |
 | R-01 to R-20 | Risks | [14](14-risks-and-open-decisions.md) | n/a |
-| D-001 to D-029 | Decisions | [14](14-risks-and-open-decisions.md) | n/a |
+| D-001 to D-032 | Decisions | [14](14-risks-and-open-decisions.md) | n/a |
 
 ## 3. Figures that appear in more than one document
 
@@ -60,7 +67,9 @@ If one changes, change all of them.
 | Staging retention | 30 days (Proposed) | 05, 09 |
 | Chat log retention | 90 days (Proposed) | 09 |
 | Front matter fields | See table | 04 (definition), 05 (validation), 11 (checks), 10 (stage 2) |
-| Domains | 6 | 04 (definition), 06 (navigation), 00 |
+| Domains | 14 (6 from strategy, 8 Proposed) | 04 (definition), 06 (navigation), 15, 00, content/README |
+| Doc types | 17 (7 original, 10 Proposed) | 04 (definition), 15, 00 |
+| Audience tiers | 2: `colleagues`, `infra-team`; leadership reads all | 04, 09 (definition), 15, 06, config/access-scopes.example.yaml |
 
 ## 4. Source to documentation map
 
