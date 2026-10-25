@@ -33,7 +33,9 @@ and continue through the rest of the document.
    - The page counts add up to the page count of the source PDF.
    - If the script reports "No top-level bookmarks found", stop and report it. Do not split by guessing page numbers.
 
-6. **Do not commit the output.** The source PDF and the `vmware-cloud-foundation-9-1-sections/` folder are in `.gitignore`, because GitHub rejects files over 100 MB. Do not force-add them. Commit only the script, if it is not already in the repo, with the message `Add script to split VCF 9.1 PDF`. Do not push unless the user asks.
+6. **Check file sizes before committing.** GitHub rejects any single file over 100 MB. List the sizes of the files in `docs/source/vmware-cloud-foundation-9-1-sections/`, for example with `Get-ChildItem` in PowerShell or `ls -lh` in Git Bash. If any section file is over 95 MB, stop and report it. Do not commit the source PDF, which is in `.gitignore`.
+
+7. **Commit the output.** Commit the new section folder and `split_vcf_pdf.py` together, with the message `Split VCF 9.1 PDF into section PDFs`. Do not push unless the user asks.
 
 Report the number of files, their names, and the page counts. Report anything that failed.
 
