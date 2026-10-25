@@ -18,3 +18,7 @@ models/
 
 # OS
 .DS_Store
+
+# Large source PDF and its split output (GitHub rejects files over 100 MB)
+docs/source/vmware-cloud-foundation-9-1.pdf
+docs/source/vmware-cloud-foundation-9-1-sections/
