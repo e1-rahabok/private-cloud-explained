@@ -208,22 +208,18 @@
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
   var COLOR = '#E8382B';
+  var R = 14;
   var body = document.body;
   var svg = document.getElementById('esc');
   function box(el) {
     var r = el.getBoundingClientRect(), b = body.getBoundingClientRect();
     return { x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height };
   }
-  function render() {
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var src = document.querySelectorAll('.grid > .cell .tag.noc')[1];
-    var dst = document.querySelector('.dash .tag.l2');
-    if (!src || !dst) return;
-    var s = box(src), d = box(dst);
+  function arrow(s, d) {
     var sx = s.x + s.w / 2, sy = s.y + s.h;
     var ey = d.y + d.h / 2, ex = d.x;
     var path = document.createElementNS(NS, 'path');
-    var r = 14; path.setAttribute('d', 'M' + sx + ',' + sy + ' V' + (ey - r) + ' Q' + sx + ',' + ey + ' ' + (sx + r) + ',' + ey + ' H' + (ex - 2));
+    path.setAttribute('d', 'M' + sx + ',' + sy + ' V' + (ey - R) + ' Q' + sx + ',' + ey + ' ' + (sx + R) + ',' + ey + ' H' + (ex - 2));
     path.setAttribute('fill', 'none');
     path.setAttribute('stroke', COLOR);
     path.setAttribute('stroke-width', '1.5');
@@ -234,6 +230,16 @@
     head.setAttribute('points', (ex - 9) + ',' + (ey - 5) + ' ' + ex + ',' + ey + ' ' + (ex - 9) + ',' + (ey + 5));
     head.setAttribute('fill', COLOR);
     svg.appendChild(head);
+  }
+  function render() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var src = document.querySelectorAll('.grid > .cell .tag.noc')[1];
+    var l2 = document.querySelector('.dash .tag.l2');
+    var sec = document.querySelector('.dash .tag.sec');
+    if (!src || !l2 || !sec) return;
+    var s = box(src);
+    arrow(s, box(l2));
+    arrow(s, box(sec));
   }
   render();
   window.addEventListener('resize', render);
