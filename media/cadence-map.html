@@ -18,6 +18,7 @@
     width: 1280px; height: 720px;
     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
     background: #FFFFFF; color: var(--text);
+    position: relative;
     padding: 40px 56px;
     display: flex; flex-direction: column;
   }
@@ -202,5 +203,46 @@
 </div>
 
 <footer>Source: Private Cloud Management, 5th edition. Empty cells mean no defined use case at that cadence.<br>Note: Ad hoc tasks are not shown. Longer cadences, such as quarterly, are not shown.</footer>
+<svg id="esc" width="1280" height="720" style="position:absolute; left:0; top:0; pointer-events:none; overflow:visible">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D7261E"/>
+    </marker>
+  </defs>
+</svg>
+<script>
+(function () {
+  var body = document.body;
+  var svg = document.getElementById('esc');
+  var tags = document.querySelectorAll('.dash .tag');
+  function box(el) {
+    var r = el.getBoundingClientRect(), b = body.getBoundingClientRect();
+    return { x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height };
+  }
+  function draw(from, to, off, d) {
+    var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    var ax = from.x, ay = from.y + from.h / 2;
+    var bx = to.x, by = to.y + to.h / 2;
+    var lx = Math.min(ax, bx) - off;
+    p.setAttribute('d', 'M' + ax + ',' + ay + ' H' + lx + ' V' + by + ' H' + bx);
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke', '#D7261E');
+    p.setAttribute('stroke-width', '2.5');
+    p.setAttribute('stroke-linejoin', 'round');
+    p.setAttribute('marker-end', 'url(#ah)');
+    svg.appendChild(p);
+  }
+  function render() {
+    while (svg.childNodes.length > 1) { svg.removeChild(svg.lastChild); }
+    if (tags.length < 5) return;
+    var noc = box(tags[0]), l2 = box(tags[1]), sec = box(tags[2]), l3 = box(tags[4]);
+    draw(noc, l2, 14, 0);
+    draw(noc, sec, 30, 0);
+    draw(l2, l3, 14, 0);
+  }
+  render();
+  window.addEventListener('resize', render);
+})();
+</script>
 </body>
 </html>
