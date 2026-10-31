@@ -64,7 +64,7 @@
     grid-column: 2 / 6;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 30px);
+    grid-template-rows: 44px repeat(5, 30px);
     gap: 6px 8px;
     border: 1px solid var(--line); border-radius: 6px;
     padding: 8px;
@@ -168,7 +168,7 @@
 
   <div class="rowlabel">AI Dashboard</div>
   <div class="dash">
-    <span class="tag noc" style="grid-column:2 / 3; grid-row:1">NOC + Help Desk</span>
+    <span class="tag noc" style="grid-column:2 / 3; grid-row:1; flex-direction:column; line-height:1.3">NOC + Help Desk<small style="font-size:11px; opacity:.9">Shift Handover dashboard</small></span>
     <span class="tag l2" style="grid-column:2 / 5; grid-row:2">L2 Team (Platform, Storage, Network, Security, Kubernetes, AI, QA)</span>
     <span class="tag cap" style="grid-column:3 / 5; grid-row:3">Capacity + FinOps Team</span>
     <span class="tag l3" style="grid-column:3 / 5; grid-row:4">L3 Team (Engineering)</span>
