@@ -18,6 +18,7 @@
     width: 1280px; height: 720px;
     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
     background: #FFFFFF; color: var(--text);
+    position: relative;
     padding: 40px 56px;
     display: flex; flex-direction: column;
   }
@@ -202,5 +203,40 @@
 </div>
 
 <footer>Source: Private Cloud Management, 5th edition. Empty cells mean no defined use case at that cadence.<br>Note: Ad hoc tasks are not shown. Longer cadences, such as quarterly, are not shown.</footer>
+<svg id="esc" width="1280" height="720" style="position:absolute; left:0; top:0; pointer-events:none; overflow:visible"></svg>
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var COLOR = '#A93226';
+  var body = document.body;
+  var svg = document.getElementById('esc');
+  function box(el) {
+    var r = el.getBoundingClientRect(), b = body.getBoundingClientRect();
+    return { x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height };
+  }
+  function render() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var src = document.querySelectorAll('.grid > .cell .tag.noc')[1];
+    var dst = document.querySelector('.dash .tag.l2');
+    if (!src || !dst) return;
+    var s = box(src), d = box(dst);
+    var sx = s.x + s.w / 2, sy = s.y + s.h;
+    var ey = d.y + d.h / 2, ex = d.x;
+    var path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', 'M' + sx + ',' + sy + ' V' + ey + ' H' + (ex - 2));
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', COLOR);
+    path.setAttribute('stroke-width', '1.5');
+    path.setAttribute('stroke-linejoin', 'round');
+    svg.appendChild(path);
+    var head = document.createElementNS(NS, 'polygon');
+    head.setAttribute('points', (ex - 9) + ',' + (ey - 5) + ' ' + ex + ',' + ey + ' ' + (ex - 9) + ',' + (ey + 5));
+    head.setAttribute('fill', COLOR);
+    svg.appendChild(head);
+  }
+  render();
+  window.addEventListener('resize', render);
+})();
+</script>
 </body>
 </html>
