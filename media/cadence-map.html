@@ -203,42 +203,52 @@
 </div>
 
 <footer>Source: Private Cloud Management, 5th edition. Empty cells mean no defined use case at that cadence.<br>Note: Ad hoc tasks are not shown. Longer cadences, such as quarterly, are not shown.</footer>
-<svg id="esc" width="1280" height="720" style="position:absolute; left:0; top:0; pointer-events:none; overflow:visible">
-  <defs>
-    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#D7261E"/>
-    </marker>
-  </defs>
-</svg>
+<svg id="esc" width="1280" height="720" style="position:absolute; left:0; top:0; pointer-events:none; overflow:visible"></svg>
 <script>
 (function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var COLOR = '#A93226';
   var body = document.body;
   var svg = document.getElementById('esc');
-  var tags = document.querySelectorAll('.dash .tag');
   function box(el) {
     var r = el.getBoundingClientRect(), b = body.getBoundingClientRect();
     return { x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height };
   }
-  function draw(from, to, off, d) {
-    var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    var ax = from.x, ay = from.y + from.h / 2;
-    var bx = to.x, by = to.y + to.h / 2;
-    var lx = Math.min(ax, bx) - off;
-    p.setAttribute('d', 'M' + ax + ',' + ay + ' H' + lx + ' V' + by + ' H' + bx);
-    p.setAttribute('fill', 'none');
-    p.setAttribute('stroke', '#D7261E');
-    p.setAttribute('stroke-width', '2.5');
-    p.setAttribute('stroke-linejoin', 'round');
-    p.setAttribute('marker-end', 'url(#ah)');
-    svg.appendChild(p);
+  function el(name, attrs) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function head(x, y) {
+    // arrow tip at (x,y), pointing right
+    return el('polygon', {
+      points: (x - 11) + ',' + (y - 6) + ' ' + x + ',' + y + ' ' + (x - 11) + ',' + (y + 6),
+      fill: COLOR
+    });
+  }
+  function line(d) {
+    return el('path', { d: d, fill: 'none', stroke: COLOR, 'stroke-width': '2', 'stroke-linejoin': 'round' });
   }
   function render() {
-    while (svg.childNodes.length > 1) { svg.removeChild(svg.lastChild); }
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var tags = document.querySelectorAll('.dash .tag');
+    var live = box(document.querySelector('.grid > .cadence:nth-child(2)'));
     if (tags.length < 5) return;
     var noc = box(tags[0]), l2 = box(tags[1]), sec = box(tags[2]), l3 = box(tags[4]);
-    draw(noc, l2, 14, 0);
-    draw(noc, sec, 30, 0);
-    draw(l2, l3, 14, 0);
+    var trunk = live.x + 36;           // vertical trunk inside the empty Live column
+    var yN = noc.y + noc.h / 2;
+    var yL2 = l2.y + l2.h / 2;
+    var ySec = sec.y + sec.h / 2;
+    var yL3 = l3.y + l3.h / 2;
+    var xN = noc.x, xL2 = l2.x, xSec = sec.x, xL3 = l3.x;
+    // L1 -> L2 and L1 -> Security share a trunk from NOC
+    svg.appendChild(line('M' + xN + ',' + yN + ' H' + trunk + ' V' + ySec + ' H' + xSec));
+    svg.appendChild(line('M' + trunk + ',' + yN + ' V' + yL2 + ' H' + xL2));
+    // L2 -> L3 continues down the same trunk
+    svg.appendChild(line('M' + trunk + ',' + yL2 + ' V' + yL3 + ' H' + xL3));
+    svg.appendChild(head(xL2, yL2));
+    svg.appendChild(head(xSec, ySec));
+    svg.appendChild(head(xL3, yL3));
   }
   render();
   window.addEventListener('resize', render);
