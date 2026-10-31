@@ -223,11 +223,12 @@
     var sx = s.x + s.w / 2, sy = s.y + s.h;
     var ey = d.y + d.h / 2, ex = d.x;
     var path = document.createElementNS(NS, 'path');
-    path.setAttribute('d', 'M' + sx + ',' + sy + ' V' + ey + ' H' + (ex - 2));
+    var r = 14; path.setAttribute('d', 'M' + sx + ',' + sy + ' V' + (ey - r) + ' Q' + sx + ',' + ey + ' ' + (sx + r) + ',' + ey + ' H' + (ex - 2));
     path.setAttribute('fill', 'none');
     path.setAttribute('stroke', COLOR);
     path.setAttribute('stroke-width', '1.5');
     path.setAttribute('stroke-linejoin', 'round');
+    path.setAttribute('stroke-linecap', 'round');
     svg.appendChild(path);
     var head = document.createElementNS(NS, 'polygon');
     head.setAttribute('points', (ex - 9) + ',' + (ey - 5) + ' ' + ex + ',' + ey + ' ' + (ex - 9) + ',' + (ey + 5));
