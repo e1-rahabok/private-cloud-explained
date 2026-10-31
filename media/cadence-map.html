@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Enterprise IT Operations Cadence Map</title>
+<style>
+  :root {
+    --navy: #14213D;
+    --blue: #1F5AA6;
+    --teal: #2A9D8F;
+    --grey: #F3F5F8;
+    --line: #D0D7E2;
+    --text: #1B1F2A;
+    --muted: #5B6575;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background: #FFFFFF; color: var(--text);
+    padding: 40px 56px;
+    display: flex; flex-direction: column;
+  }
+  header h1 { font-size: 30px; color: var(--navy); font-weight: 600; }
+  header p { font-size: 15px; color: var(--muted); margin-top: 4px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 170px repeat(4, 1fr);
+    grid-template-rows: auto repeat(4, auto);
+    gap: 8px;
+    margin-top: 6px;
+    flex: 1;
+  }
+  .corner { }
+  .cadence {
+    background: var(--navy); color: #fff;
+    border-radius: 6px; padding: 10px 12px;
+  }
+  .grid > .cadence:nth-child(2) { background: #2A9D8F; }
+  .grid > .cadence:nth-child(3) { background: #2A7F9E; }
+  .grid > .cadence:nth-child(4) { background: #1F5AA6; }
+  .grid > .cadence:nth-child(5) { background: #14213D; }
+  .cadence h2 { font-size: 17px; font-weight: 600; }
+  .cadence small { display: block; font-size: 12px; opacity: .9; margin-top: 4px; line-height: 1.35; }
+  .rowlabel {
+    background: var(--grey); color: var(--navy);
+    border-radius: 6px; padding: 10px 12px;
+    font-weight: 600; font-size: 15px;
+    display: flex; align-items: center;
+  }
+  .cell {
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px; display: flex; flex-direction: column; gap: 6px;
+    align-content: center; justify-content: center;
+  }
+  .cell.empty { border-style: dashed; background: #FAFBFC; min-height: 44px; }
+  .cell { padding: 10px 8px; }
+  .cell.slots {
+    display: grid; grid-template-rows: repeat(5, 1fr); gap: 6px;
+    justify-content: stretch; align-content: stretch;
+  }
+  .cell.slots .tag { justify-self: stretch; text-align: center; }
+  .dash {
+    grid-column: 2 / 6;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 30px);
+    gap: 6px 8px;
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px;
+  }
+  .dash .tag { display: flex; align-items: center; justify-content: center; }
+  .tag {
+    font-size: 12.5px; padding: 5px 9px; border-radius: 4px;
+    color: #fff; white-space: nowrap;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .noc { background: var(--teal); }
+  .l2 { background: #2A8DA0; }
+  .sec { background: #7A4E9C; }
+  .cap { background: #2A7DB0; }
+  .it { background: var(--navy); }
+  .l3 { background: #2366B0; }
+  .dr { background: #1F4F8F; }
+  .timeline {
+    margin-top: 22px;
+  }
+  .tl-label {
+    font-size: 13px; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .06em;
+    margin-left: 178px; margin-bottom: 4px;
+  }
+  .tl-track {
+    margin-left: 178px;
+    position: relative; height: 22px;
+  }
+  .tl-track::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 50%;
+    height: 6px; margin-top: -3px;
+    background: linear-gradient(90deg, #2A9D8F, #2A7F9E 33%, #1F5AA6 66%, #14213D);
+    border-radius: 3px;
+  }
+  .tl-track::after {
+    content: ""; position: absolute; right: -2px; top: 50%;
+    border-left: 16px solid var(--navy);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    margin-top: -10px;
+  }
+  .dot {
+    position: absolute; top: 50%; width: 16px; height: 16px;
+    margin: -8px 0 0 -8px; border-radius: 50%;
+    background: #fff; border: 3px solid var(--blue);
+  }
+  footer { font-size: 11px; color: var(--muted); margin-top: 10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Private Cloud Management</h1>
+  <p>Who does what when, and how. Transforming from reactive to proactive operations management.</p>
+</header>
+
+<div class="timeline">
+  <div class="tl-label">Cadence</div>
+  <div class="tl-track">
+    <span class="dot" style="left:12.5%"></span>
+    <span class="dot" style="left:37.5%"></span>
+    <span class="dot" style="left:62.5%"></span>
+    <span class="dot" style="left:87.5%"></span>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="corner"></div>
+  <div class="cadence">
+    <h2>Live</h2>
+    <small>Streaming, auto-updating on the big TV screen</small>
+  </div>
+  <div class="cadence">
+    <h2>Daily</h2>
+    <small>5 min at start of day. Plan ahead for the day.</small>
+  </div>
+  <div class="cadence">
+    <h2>Weekly</h2>
+    <small>1 hour at start of week. Plan ahead for the week.</small>
+  </div>
+  <div class="cadence">
+    <h2>Monthly</h2>
+    <small>Half a day at start of month. Review past month, plan ahead.</small>
+  </div>
+
+  <div class="rowlabel">Live Screen</div>
+  <div class="cell">
+    <span class="tag noc">NOC + Help Desk</span>
+  </div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+
+  <div class="rowlabel">AI Alerts</div>
+  <div class="cell">
+    <span class="tag noc">NOC + Help Desk</span>
+  </div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+
+  <div class="rowlabel">AI Dashboard</div>
+  <div class="dash">
+    <span class="tag noc" style="grid-column:2 / 3; grid-row:1">NOC + Help Desk</span>
+    <span class="tag l2" style="grid-column:2 / 5; grid-row:2">L2 Team (Platform, Storage, Network, Security, Kubernetes, AI, QA)</span>
+    <span class="tag cap" style="grid-column:3 / 5; grid-row:3">Capacity + FinOps Team</span>
+    <span class="tag l3" style="grid-column:3 / 5; grid-row:4">L3 Team (Engineering)</span>
+    <span class="tag dr" style="grid-column:3 / 5; grid-row:5">Backup + DR Team</span>
+    <span class="tag it" style="grid-column:4 / 5; grid-row:6">IT Leaders</span>
+  </div>
+
+  <div class="rowlabel">Reports</div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+  <div class="cell" style="grid-column:4 / 6">
+    <span class="tag it">IT Leaders</span>
+  </div>
+</div>
+
+<footer>Source: Private Cloud Management, 5th edition. Empty cells mean no defined use case at that cadence.</footer>
+</body>
+</html>
