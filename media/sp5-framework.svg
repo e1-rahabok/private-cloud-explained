@@ -84,7 +84,7 @@
 
   <!-- Architecture: Platform -->
   <rect x="157" y="458" width="823" height="198" rx="4" fill="#F2F4F7"/>
-  <text x="568" y="493" text-anchor="middle" font-size="28" font-weight="700" fill="#0F7B8A">Platform</text>
+  <text x="568" y="493" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">Platform</text>
   <text x="568" y="517" text-anchor="middle" font-size="15" fill="#3D4758">System Architecture of Enterprise Private Cloud</text>
 
   <rect x="391" y="530" width="353" height="117" rx="4" fill="#FFFFFF" stroke="#D9DEE6" stroke-width="1"/>
