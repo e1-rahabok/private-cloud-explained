@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Enterprise IT Operations Cadence Map</title>
+<style>
+  :root {
+    --black: #111111;
+    --charcoal: #3A3A3A;
+    --mid: #6B6B6B;
+    --light: #F2F2F2;
+    --line: #D0D0D0;
+    --text: #111111;
+    --muted: #666666;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background: #FFFFFF; color: var(--text);
+    position: relative;
+    padding: 40px 56px;
+    display: flex; flex-direction: column;
+  }
+  header h1 { font-size: 30px; color: var(--black); font-weight: 600; }
+  header p { font-size: 15px; color: var(--muted); margin-top: 4px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 170px 0.85fr 1fr 1fr 1fr;
+    grid-template-rows: auto repeat(4, auto);
+    gap: 8px;
+    margin-top: 6px;
+    flex: 1;
+  }
+  .corner { }
+  .cadence {
+    background: var(--black); color: #fff;
+    border-radius: 6px; padding: 10px 12px;
+  }
+  .grid > .cadence:nth-child(2) { background: #D9725F; }
+  .grid > .cadence:nth-child(3) { background: var(--charcoal); }
+  .grid > .cadence:nth-child(4) { background: #2E2E2E; }
+  .grid > .cadence:nth-child(5) { background: var(--black); }
+  .cadence h2 { font-size: 17px; font-weight: 600; }
+  .cadence small { display: block; font-size: 12px; opacity: .9; margin-top: 4px; line-height: 1.35; }
+  .rowlabel {
+    background: var(--light); color: var(--black);
+    border-radius: 6px; padding: 10px 12px;
+    font-weight: 600; font-size: 15px;
+    display: flex; align-items: center;
+  }
+  .cell {
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px; display: flex; flex-direction: column; gap: 6px;
+    align-content: center; justify-content: center;
+  }
+  .cell.empty { border-style: dashed; background: #FAFAFA; min-height: 44px; }
+  .cell { padding: 10px 8px; }
+  .cell.slots {
+    display: grid; grid-template-rows: repeat(5, 1fr); gap: 6px;
+    justify-content: stretch; align-content: stretch;
+  }
+  .cell.slots .tag { justify-self: stretch; text-align: center; }
+  .dash {
+    grid-column: 2 / 6;
+    display: grid;
+    grid-template-columns: 0.85fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(7, 44px);
+    gap: 10px 8px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px var(--line);
+    padding: 8px 0;
+  }
+  .dash .tag { display: flex; align-items: center; justify-content: center; margin: 0 8px; }
+  .dash .noc { background: #9CC8EE; color: #0B2545; }
+  .dash .l2 { background: #2F6FB0; color: #FFFFFF; }
+  .dash .sec { background: #2D6BAA; color: #FFFFFF; }
+  .dash .cap { background: #2960A0; color: #FFFFFF; }
+  .dash .l3 { background: #22518A; color: #FFFFFF; }
+  .dash .dr { background: #1C4478; color: #FFFFFF; }
+  .dash .it { background: #13325E; color: #FFFFFF; }
+  .tag {
+    font-size: 12.5px; padding: 5px 9px; border-radius: 4px;
+    color: #fff; white-space: nowrap;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .tag { position: relative; padding-left: 26px; }
+  .tag::before {
+    content: ""; position: absolute; left: 8px; top: 50%;
+    width: 13px; height: 13px; margin-top: -6.5px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='7' r='5'/><path d='M2 23c0-5.5 4.5-9 10-9s10 3.5 10 9z'/></svg>") no-repeat center / contain;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='7' r='5'/><path d='M2 23c0-5.5 4.5-9 10-9s10 3.5 10 9z'/></svg>") no-repeat center / contain;
+  }
+  .noc { background: #9CC8EE; color: #0B2545; }
+  .l2 { background: var(--charcoal); }
+  .sec { background: #555555; }
+  .cap { background: var(--charcoal); }
+  .it { background: #13325E; }
+  .l3 { background: #2E2E2E; }
+  .dr { background: #1F1F1F; }
+  .timeline {
+    margin-top: 22px;
+  }
+  .tl-label {
+    font-size: 13px; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .06em;
+    margin-left: 178px; margin-bottom: 4px;
+  }
+  .tl-track {
+    margin-left: 178px;
+    position: relative; height: 22px;
+  }
+  .tl-track::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 50%;
+    height: 6px; margin-top: -3px;
+    background: linear-gradient(90deg, #6B6B6B, #3A3A3A 33%, #2E2E2E 66%, #111111);
+    border-radius: 3px;
+  }
+  .tl-track::after {
+    content: ""; position: absolute; right: -2px; top: 50%;
+    border-left: 16px solid var(--black);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    margin-top: -10px;
+  }
+  .dot {
+    position: absolute; top: 50%; width: 16px; height: 16px;
+    margin: -8px 0 0 -8px; border-radius: 50%;
+    background: #fff; border: 3px solid var(--black);
+  }
+  footer { font-size: 11px; color: var(--muted); margin-top: 10px; }
+  .cadence { position: relative; cursor: pointer; outline: 2px solid transparent; outline-offset: 2px;
+    transition: transform .15s ease, box-shadow .15s ease, outline-color .15s ease; }
+  .cadence { z-index: 1; }
+  .cadence:hover, .cadence:focus-within { z-index: 30; }
+  .cadence:hover, .cadence:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.25); outline-color: #111111; }
+  .cadence .pop { display: none; position: absolute; top: calc(100% + 10px); left: 0; width: 290px; z-index: 20;
+    background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18); padding: 12px 14px; font-size: 13px; line-height: 1.45; font-weight: 400; cursor: default; }
+  .cadence:hover .pop, .cadence:focus-visible .pop, .cadence:focus-within .pop { display: block; }
+  .cadence .time { position: absolute; bottom: 10px; right: 10px; display: flex; flex-direction: column; align-items: flex-end;
+    padding: 8px 14px; border-radius: 10px; background: rgba(255,255,255,.2); }
+  .cadence .time .lbl { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .9; }
+  .cadence .time .val { display: inline-flex; align-items: center; gap: 7px; font-size: 22px; font-weight: 700; margin-top: 2px; }
+  .cadence .time svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round;  position: relative; top: 1px; }
+  .cadence .info { position: absolute; left: 12px; bottom: 10px; width: 28px; height: 28px; border-radius: 50%;
+    border: none; background: #1F6FD1; color: #FFFFFF; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; padding: 0; }
+  .cadence .info svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+  .cadence .info:hover, .cadence .info:focus-visible { background: #174E96; outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  .cadence { min-height: 96px; padding-bottom: 46px; }
+  /* Visual polish: soft page gradient, card depth, glossy fills */
+  body { background: linear-gradient(160deg, #FFFFFF 0%, #F3F6FB 100%); }
+  .cadence { border-radius: 10px; background-image: linear-gradient(180deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 60%); box-shadow: 0 6px 14px rgba(20,33,61,.18); }
+  .rowlabel { border-radius: 10px; background-image: linear-gradient(180deg, #FFFFFF 0%, #E9EEF5 100%); box-shadow: 0 2px 6px rgba(20,33,61,.08); }
+  .cell { border-radius: 10px; box-shadow: 0 2px 6px rgba(20,33,61,.06); }
+  .cell.empty { box-shadow: none; }
+  .dash { border-radius: 10px; background-image: linear-gradient(180deg, #FFFFFF 0%, #F5F8FC 100%); box-shadow: 0 8px 20px rgba(20,33,61,.10), inset 0 0 0 1px var(--line); }
+  .dash .tag { border-radius: 8px; background-image: linear-gradient(180deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 70%); box-shadow: 0 3px 8px rgba(20,33,61,.22); }
+  .tag { border-radius: 8px; }
+  .dash .tag.noc, .dash .tag.l2, .dash .tag.cap, .dash .tag.l3, .dash .tag.dr, .dash .tag.it, .dash .tag.sec { letter-spacing: .01em; }
+  .cadence .time { box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 2px 6px rgba(0,0,0,.15); }
+  .cadence .info { box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+  header h1 { letter-spacing: -.01em; }
+  .tl-track::before { box-shadow: 0 2px 6px rgba(20,33,61,.25); }
+  /* VCF Operations group bracket along the row labels */
+  body { position: relative; }
+  #vcf { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
+  #vcf .vcf-line { position: absolute; width: 3px; background: #3A3A3A; border-radius: 2px; }
+  #vcf .vcf-title { position: absolute; white-space: nowrap; text-align: center; font-size: 13px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; color: #3A3A3A; transform: rotate(-90deg); transform-origin: center; line-height: 20px; }
+  /* Popup for single team bars */
+  .dash .tag { cursor: default; }
+  .dash .tag[tabindex] { cursor: pointer; }
+  .dash .tag:hover, .dash .tag:focus-within { z-index: 30; }
+  .dash .tag .pop { display: none; position: absolute; top: calc(100% + 8px); left: 0; width: 300px; z-index: 30;
+    background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18); padding: 10px 12px; font-size: 13px; line-height: 1.45; font-weight: 400;
+    white-space: normal; text-align: left; cursor: default; }
+  .dash .tag:hover .pop, .dash .tag:focus-within .pop { display: block; }
+  .dash .tag .info { position: absolute; right: 8px; top: 50%; left: auto; bottom: auto; margin-top: -11px;
+    width: 22px; height: 22px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
+  .dash .tag .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+  .dash .tag .info:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  /* Popup and info button styles for tags outside the AI Dashboard panel */
+  .tag .pop { display: none; position: absolute; top: calc(100% + 8px); left: 0; width: 300px; z-index: 30;
+    background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18); padding: 10px 12px; font-size: 13px; line-height: 1.45; font-weight: 400;
+    white-space: normal; text-align: left; cursor: default; }
+  .tag:hover .pop, .tag:focus-within .pop { display: block; }
+  .tag:hover, .tag:focus-within { z-index: 30; }
+  .tag .info { position: absolute; right: 8px; top: 50%; left: auto; bottom: auto; margin-top: -11px;
+    width: 22px; height: 22px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
+  .tag .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+  .tag .info:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  .tag[tabindex] { cursor: pointer; }
+  .tag { min-height: 44px; }
+  /* Flowing escalation arrows: dashes travel from source to target */
+  @keyframes flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -34; } }
+  #esc path.flow { animation: flow 1.6s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { #esc path.flow { animation: none; } }
+  /* Escalation note info button in the empty AI Dashboard column */
+  .dash .esc-info { grid-column: 1; grid-row: 2 / span 2; align-self: center; justify-self: start; margin-left: calc(50% + 19px); position: relative; display: flex; align-items: center; justify-content: center; }
+  .esc-info:hover, .esc-info:focus-within { z-index: 30; }
+  .esc-info .info { width: 26px; height: 26px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
+  .esc-info .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+  .esc-info .info:focus-visible { outline: 2px solid #111111; outline-offset: 2px; }
+  .esc-info .pop { display: none; position: absolute; left: 34px; top: 50%; transform: translateY(-50%); width: 260px; z-index: 30;
+    background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px; box-shadow: 0 10px 24px rgba(0,0,0,.18);
+    padding: 10px 12px; font-size: 13px; line-height: 1.45; font-weight: 400; text-align: left; }
+  .esc-info:hover .pop, .esc-info:focus-within .pop { display: block; }
+  /* IT Leaders: one identical style everywhere */
+  .tag.it { background-color: #13325E; background-image: linear-gradient(180deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 70%); box-shadow: 0 3px 8px rgba(20,33,61,.22); color: #FFFFFF; }
+</style>
+</head>
+<body>
+<script>
+/* ==========================================================================
+   EDIT POPUP TEXT HERE
+   --------------------------------------------------------------------------
+   Every hover or focus popup on this page reads its text from POPUP_TEXT.
+   To change a popup, edit the text after its key. Keep the key names as they are.
+   Plain text only: do not put HTML tags in these strings.
+
+   Where each key appears:
+     cadence.*        Live, Daily, Weekly, Monthly header cards
+     noc.live         NOC + Help Desk in Live Screen and AI Alerts (both use this text)
+     noc.dashboard    NOC + Help Desk in the AI Dashboard
+     escalation.note  Info button beside the escalation arrows
+     team.*           Team bars in the AI Dashboard and Reports
+   ========================================================================== */
+const POPUP_TEXT = {
+  "cadence.live": "Streaming, auto-updating on the big TV screen with auto-rotation",
+  "cadence.daily": "Quick, 5 min review at start of day. Focus on the day ahead only. Time consuming check is not operationally practical.",
+  "cadence.weekly": "1 hour deeper dive at start of week. Plan ahead for the week. Insight analysis.",
+  "cadence.monthly": "Big team review. Half a day at start of month. Review past month, plan ahead.",
+  "noc.live": "Monitors the live screen and triages AI alerts in real time, escalating issues to Level 2.",
+  "noc.dashboard": "Use the Shift Handover dashboard to support the transition between shifts",
+  "escalation.note": "Escalation path follows the Exit Criteria + Entry Criteria forms",
+  "team.l2": "Proactive performance analysis using both insight + alert. Reclamation and rightsizing.",
+  "team.capacity": "Capacity Planning and cost optimization",
+  "team.l3": "Plan and design the overall system architecture, perform deep troubleshooting and engage vendor to solve escalation",
+  "team.security": "Monitor security posture, respond to security alerts, and check compliance with policies such as the MAS AI risk guidelines.",
+  "team.dr": "Confirm backups complete successfully and run restore and disaster recovery tests on schedule.",
+  "team.it.dashboard": "Review overall health, risks, and trends on the dashboard, and set priorities and approve decisions.",
+  "team.it.reports": "Receive weekly and monthly reports to track operations, capacity, and performance for oversight and decisions.",
+};
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("[data-pop]").forEach(function (el) {
+    el.textContent = POPUP_TEXT[el.getAttribute("data-pop")] || "";
+  });
+});
+</script>
+
+<header>
+  <h1>Private Cloud Management</h1>
+  <p>Who does what when, and how. Transforming from reactive to proactive operations management.<br>Beyond role-based, each person has a personalized AI dashboard that is tailored. Daily, Weekly, and Monthly follow different SOPs, as different questions are answered.</p>
+</header>
+
+<div class="timeline">
+  <div class="tl-label">Cadence with Standard Operating Procedure</div>
+  <div class="tl-track">
+    <span class="dot" style="left:106.6px"></span>
+    <span class="dot" style="left:346.8px"></span>
+    <span class="dot" style="left:605.6px"></span>
+    <span class="dot" style="left:864.5px"></span>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="corner"></div>
+  <div class="cadence" tabindex="0">
+    <h2>Live</h2>
+    <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 sec</span></span>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button>
+    <div class="pop" data-pop="cadence.live"></div>
+  </div>
+  <div class="cadence" tabindex="0">
+    <h2>Daily</h2>
+    <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 min</span></span>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button>
+    <div class="pop" data-pop="cadence.daily"></div>
+  </div>
+  <div class="cadence" tabindex="0">
+    <h2>Weekly</h2>
+    <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>1 hour</span></span>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button>
+    <div class="pop" data-pop="cadence.weekly"></div>
+  </div>
+  <div class="cadence" tabindex="0">
+    <h2>Monthly</h2>
+    <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>0.5 day</span></span>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button>
+    <div class="pop" data-pop="cadence.monthly"></div>
+  </div>
+
+  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="13" rx="2" fill="#2F6FB0"/><rect x="4" y="5" width="16" height="9" rx="1" fill="#DCEBFA"/><path d="M5 10.5h3l1.5-3 2 6 1.5-3H19" fill="none" stroke="#E8786B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="10" y="16" width="4" height="2" fill="#2F6FB0"/><rect x="7" y="18.5" width="10" height="2" rx="1" fill="#2F6FB0"/></svg></span>Live Screen</div>
+  <div class="cell">
+    <span class="tag noc" tabindex="0">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.live"></span></span>
+  </div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+
+  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a6 6 0 0 0-6 6v4l-2 3h16l-2-3v-4a6 6 0 0 0-6-6z" fill="#E0A526"/><path d="M9.5 19a2.5 2.5 0 0 0 5 0z" fill="#B7791F"/><circle cx="18" cy="5.5" r="3.6" fill="#D7261E"/><rect x="17.2" y="3.6" width="1.6" height="2.9" fill="#FFFFFF"/><rect x="17.2" y="7" width="1.6" height="1.3" fill="#FFFFFF"/></svg></span>AI Alerts</div>
+  <div class="cell">
+    <span class="tag noc" tabindex="0">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.live"></span></span>
+  </div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+
+  <div class="rowlabel" style="flex-direction:column; align-items:flex-start"><div style="display:flex; align-items:center"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17a9 9 0 0 1 18 0" fill="none" stroke="#2A9D8F" stroke-width="3.4" stroke-linecap="round"/><path d="M12 17l4.5-5" stroke="#14213D" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="2" fill="#14213D"/><path d="M19.5 1.8l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="#7A4E9C"/></svg></span>AI Dashboard</div><small style="display:block; font-size:11px; font-weight:400; margin-top:2px; color:var(--muted)">Personalized to each person, not just role. Covers both Alert + Insight.</small></div>
+  <div class="dash">
+    <div class="esc-info"><button class="info" type="button" aria-label="Show escalation note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="escalation.note"></span></div>
+  <span class="tag noc" tabindex="0" style="grid-column:2 / 3; grid-row:1">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.dashboard"></span></span>
+    <span class="tag l2" tabindex="0" style="grid-column:2 / 5; grid-row:2">L2 Team (Platform, Storage, Network, Kubernetes, AI, QA)<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.l2"></span></span>
+    <span class="tag sec" tabindex="0" style="grid-column:2 / 5; grid-row:3">Security + Compliance Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.security"></span></span>
+    <span class="tag cap" tabindex="0" style="grid-column:3 / 5; grid-row:4">Capacity + FinOps Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.capacity"></span></span>
+    <span class="tag l3" tabindex="0" style="grid-column:3 / 5; grid-row:5">L3 Team (Engineering)<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.l3"></span></span>
+    <span class="tag dr" tabindex="0" style="grid-column:3 / 5; grid-row:6">Backup + DR Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.dr"></span></span>
+    <span class="tag it" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
+  </div>
+
+  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l5 5v15H5z" fill="#7A4E9C"/><path d="M15 2v5h5z" fill="#C9B3E0"/><rect x="8" y="12" width="2.5" height="6" fill="#FFFFFF"/><rect x="11.5" y="9" width="2.5" height="9" fill="#FFFFFF"/><rect x="15" y="14" width="2.5" height="4" fill="#FFFFFF"/></svg></span>Reports</div>
+  <div class="cell empty"></div>
+  <div class="cell empty"></div>
+  <div class="cell" style="grid-column:4 / 6">
+    <span class="tag it" tabindex="0">IT Leaders<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.reports"></span></span>
+  </div>
+</div>
+
+<footer>Source: Private Cloud Management, 5th edition. Empty cells mean no defined use case at that cadence.<br>Note: Ad hoc tasks are not shown. Longer cadences, such as quarterly, are not shown.</footer>
+<svg id="esc" width="1280" height="720" style="position:absolute; left:0; top:0; pointer-events:none; overflow:visible"></svg>
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var COLOR = '#E8786B';
+  var R = 14;
+  var body = document.body;
+  var svg = document.getElementById('esc');
+  function box(el) {
+    var r = el.getBoundingClientRect(), b = body.getBoundingClientRect();
+    return { x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height };
+  }
+  function arrow(s, d) {
+    var sx = s.x + s.w / 2, sy = s.y + s.h;
+    var ey = d.y + d.h / 2, ex = d.x;
+    var path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', 'M' + sx + ',' + sy + ' V' + (ey - R) + ' Q' + sx + ',' + ey + ' ' + (sx + R) + ',' + ey + ' H' + (ex - 2));
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', COLOR);
+    path.setAttribute('stroke-width', '3');
+    path.setAttribute('stroke-linejoin', 'round');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('stroke-dasharray', '9 8');
+    path.setAttribute('class', 'flow');
+    path.setAttribute('opacity', '0.9');
+    svg.appendChild(path);
+    var head = document.createElementNS(NS, 'polygon');
+    head.setAttribute('points', (ex - 9) + ',' + (ey - 5) + ' ' + ex + ',' + ey + ' ' + (ex - 9) + ',' + (ey + 5));
+    head.setAttribute('fill', COLOR);
+    svg.appendChild(head);
+  }
+  function render() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var src = document.querySelectorAll('.grid > .cell .tag.noc')[1];
+    var l2 = document.querySelector('.dash .tag.l2');
+    var sec = document.querySelector('.dash .tag.sec');
+    if (!src || !l2 || !sec) return;
+    var s = box(src);
+    arrow(s, box(l2));
+    arrow(s, box(sec));
+  }
+  render();
+  window.addEventListener('resize', render);
+})();
+</script>
+<div id="vcf" aria-hidden="true"><div class="vcf-line"></div><div class="vcf-title">VCF Operations</div></div>
+<script>
+(function () {
+  var body = document.body;
+  var wrap = document.getElementById('vcf');
+  function box(el) {
+    var r = el.getBoundingClientRect(), b = body.getBoundingClientRect();
+    return { x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height };
+  }
+  function render() {
+    var labels = document.querySelectorAll('.rowlabel');
+    if (labels.length < 4) return;
+    var first = box(labels[0]), last = box(labels[3]);
+    var top = first.y, bottom = last.y + last.h, H = bottom - top;
+    var lineX = first.x - 14;
+    var line = wrap.querySelector('.vcf-line');
+    line.style.left = lineX + 'px';
+    line.style.top = top + 'px';
+    line.style.height = H + 'px';
+    var t = wrap.querySelector('.vcf-title');
+    var cx = lineX - 16, cy = top + H / 2;
+    t.style.width = H + 'px';
+    t.style.left = (cx - H / 2) + 'px';
+    t.style.top = (cy - 10) + 'px';
+  }
+  render();
+  window.addEventListener('resize', render);
+})();
+</script>
+</body>
+</html>
