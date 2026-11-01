@@ -145,7 +145,7 @@
   .cadence .time .val { display: inline-flex; align-items: center; gap: 7px; font-size: 22px; font-weight: 700; margin-top: 2px; }
   .cadence .time svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round;  position: relative; top: 1px; }
   .cadence .info { position: absolute; left: 12px; bottom: 10px; width: 28px; height: 28px; border-radius: 50%;
-    border: none; background: #1F6FD1; color: #FFFFFF; cursor: pointer;
+    border: none; background: #9DBBE0; color: #FFFFFF; cursor: pointer;
     display: flex; align-items: center; justify-content: center; padding: 0; }
   .cadence .info svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
   .cadence .info:hover, .cadence .info:focus-visible { background: #174E96; outline: 2px solid #FFFFFF; outline-offset: 2px; }
@@ -179,9 +179,9 @@
     box-shadow: 0 10px 24px rgba(0,0,0,.18); padding: 10px 12px; font-size: 13px; line-height: 1.45; font-weight: 400;
     white-space: normal; text-align: left; cursor: default; }
   .dash .tag:hover .pop, .dash .tag:focus-within .pop { display: block; }
-  .dash .tag .info { position: absolute; right: 8px; top: 50%; left: auto; bottom: auto; margin-top: -11px;
-    width: 22px; height: 22px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
-    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
+  .dash .tag .info { position: absolute; right: 8px; top: 50%; left: auto; bottom: auto; margin-top: -9px;
+    width: 18px; height: 18px; border: none; border-radius: 50%; background: #9DBBE0; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
   .dash .tag .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
   .dash .tag .info:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
   /* Popup and info button styles for tags outside the AI Dashboard panel */
@@ -191,9 +191,9 @@
     white-space: normal; text-align: left; cursor: default; }
   .tag:hover .pop, .tag:focus-within .pop { display: block; }
   .tag:hover, .tag:focus-within { z-index: 30; }
-  .tag .info { position: absolute; right: 8px; top: 50%; left: auto; bottom: auto; margin-top: -11px;
-    width: 22px; height: 22px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
-    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
+  .tag .info { position: absolute; right: 8px; top: 50%; left: auto; bottom: auto; margin-top: -9px;
+    width: 18px; height: 18px; border: none; border-radius: 50%; background: #9DBBE0; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
   .tag .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
   .tag .info:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
   .tag[tabindex] { cursor: pointer; }
@@ -205,8 +205,8 @@
   /* Escalation note info button in the empty AI Dashboard column */
   .dash .esc-info { grid-column: 1; grid-row: 2 / span 2; align-self: center; justify-self: start; margin-left: calc(50% + 19px); position: relative; display: flex; align-items: center; justify-content: center; }
   .esc-info:hover, .esc-info:focus-within { z-index: 30; }
-  .esc-info .info { width: 26px; height: 26px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
-    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
+  .esc-info .info { width: 20px; height: 20px; border: none; border-radius: 50%; background: #9DBBE0; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
   .esc-info .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
   .esc-info .info:focus-visible { outline: 2px solid #111111; outline-offset: 2px; }
   .esc-info .pop { display: none; position: absolute; left: 34px; top: 50%; transform: translateY(-50%); width: 260px; z-index: 30;
@@ -225,7 +225,7 @@
   .dash .tag .dash-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .dash .tag .dash-link:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
   /* Reports info: button in the row label opens a panel placed below the diagram (click) */
-  .rep-btn { margin-left: auto; width: 24px; height: 24px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
+  .rep-btn { margin-left: auto; width: 19px; height: 19px; border: none; border-radius: 50%; background: #9DBBE0; color: #FFFFFF;
     display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); flex: none; }
   .rep-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
   .rep-btn:focus-visible { outline: 2px solid #111111; outline-offset: 2px; }
