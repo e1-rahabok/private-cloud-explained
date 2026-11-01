@@ -224,6 +224,20 @@
     display: flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; }
   .dash .tag .dash-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .dash .tag .dash-link:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  /* Reports info: button in the row label opens a panel placed below the diagram (click) */
+  .rep-btn { margin-left: auto; width: 24px; height: 24px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); flex: none; }
+  .rep-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+  .rep-btn:focus-visible { outline: 2px solid #111111; outline-offset: 2px; }
+  .rep-panel { display: none; margin-top: 14px; background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.12); padding: 14px 18px; font-size: 13px; line-height: 1.45; font-weight: 400; text-align: left; }
+  .rep-panel.open { display: block; }
+  .rep-head { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .rep-intro { color: #444444; margin-bottom: 8px; }
+  .rep-row { display: grid; grid-template-columns: 170px 1fr; gap: 12px; padding: 7px 0; border-top: 1px solid #E6E6E6; }
+  .rep-label { font-weight: 600; }
+  .rep-body p { margin-bottom: 3px; }
+  .rep-body p:last-child { margin-bottom: 0; }
   /* IT Leaders bar: two separate popups. Icon popup on the icon, info popup on the info button only. */
   .dash .tag.it-dash .pop { display: none !important; }
   .dash .tag.it-dash .info:hover ~ .pop, .dash .tag.it-dash .info:focus-visible ~ .pop { display: block !important; }
@@ -265,11 +279,88 @@ const POPUP_TEXT = {
   "team.dr": "Checks backup job results each day and resolves failed jobs. Manages VMware Site Recovery Manager (SRM). Validates RPO/RTO SLA compliance via automated non-disruptive DR testing.",
   "dash.sample": "Try a sample dashboard",
   "team.it.dashboard": "Using the Executive Dashboard, reviews service availability, major incidents, and capacity risks. Approves changes with significant business risk and sets priorities for the next period.",
+  "dash.design": {
+    "title": "Design Best Practices",
+    "intro": "Answer these five questions for each dashboard before building it.",
+    "rows": [
+      ["Who", "Begin with the end in mind. Who are actually using the dashboards you create? What specific role and persona is going to use it?", "Start by creating a list of all users who would be accessing and using information in the dashboard.", "Against this list mention the kind of information they would find useful for the specific persona."],
+      ["What", "What is the type of activity (granular vs. high level) they will perform?", "List next to the task if the information needs to be granular or high level. Sometimes users are looking for just a KPI number, sometimes they are looking for trends. Sometimes users might want to interact with the information, create drill downs etc.", "The complexity of the activity will help you identify if you need a complex widget or a simple one."],
+      ["How", "How (workflow) will they use the dashboard?", "List down what happens after they view the information, do they need to use another application, another visualization. Plan accordingly and place navigation to enable this to happen."],
+      ["When", "How often (hourly, daily, weekly, monthly, quarterly) will they use the dashboard?", "Think about the usage of the dashboard, is it a frequent use case needed for daily use to perform work, or is it for monitoring on an irregular basis."],
+      ["Why", "Why (outcome) do they need the dashboard?", "Also list down outcomes from the dashboard usage. What is the usefulness of using the dashboard and what goals or outcomes the user is likely to achieve."]
+    ]
+  },
+  "live.bestpractice": {
+    "title": "Best practice for a NOC screen",
+    "intro": "Many NOC screens display static and non-urgent content, so people stop looking at them after a while. Follow these rules:",
+    "rows": [
+      ["0 interaction", "Think of TV, not monitor. NOC screen does not have keyboard and mouse for user to click and type. So the information is auto-refresh and auto-rotate.", "If your TV has a touch screen, that's a bonus. This should not replace the basic need of being useful from afar.", "Toolbars & buttons on screen should not be used. They add confusion, plus there is no way to use them from afar.", "Most widgets are not suitable as a result."],
+      ["Large number", "As the information is seen from a distance, the font used is much larger than the standard font used in laptop or desktop monitor. This also means the screen real estate is relatively less. When designing, use a 14\" screen instead of 24\" screen."],
+      ["Now", "It is placed strategically because it displays a time sensitive information. As such, many operational use cases are actually not suitable for these. For examples, Capacity, Cost, and Sustainability management are not highly time sensitive. They tend to stay static for hours, rendering them unsuitable for live screen.", "It's showing the latest 5-minute data. The past is less relevant. Ideally, project the next 1 hour.", "The information auto-refresh frequently. Think 1 minute, not 10 minutes. If the display is static for 300 seconds, users will not be drawn into it.", "The information presented is more urgent in nature than alerts (otherwise you simply use alerts!) and is used to complement alerts."],
+      ["Color", "Heavy use of color. Color is easier to digest than text, as you don't even need to read. Lots of text can confuse viewers. Text can be hard to read from afar.", "Use key colors (green, yellow, amber, and red) to classify the severity of the issue.", "By default, all should be green. If you display something that is red most of the time, after a while the viewer will ignore it. This defeats the very purpose of displaying on the big screen. Use alerts for something less urgent.", "Ideally, all the numbers are in %, with 0 being bad and 100 being perfect."],
+      ["5 second", "KISS (Keep It Simple Show). Remember the 5-second test.", "The screen should be easy to interpret, user friendly and do not require an explanation."]
+    ]
+  },
+  "reports.edge": {
+    "title": "Where a report beats a dashboard",
+    "intro": "The nature of report means it is better than dashboards in certain situations or use cases, such as:",
+    "rows": [
+      ["Offline", "A typical example is the user is travelling, such as in a plane.", "If the user is not offline, but has limited network bandwidth, a text-based AI-powered chat could be better than report.", "Typical audience: Senior IT Leaders."],
+      ["No access", "The users don't have network access or security clearance to login to VCF Operations.", "Typical audience: external users who cannot reach VCF Operations."],
+      ["Casual user", "Both PDF files and CSV files require less training to users than a system. There is no login required, and usage is generally much simpler."],
+      ["Export", "Export into spreadsheet for further analysis & reporting. Typically, the Finance team or Audit Team want the data as part of their spreadsheet report or PowerPoint presentation.", "If it makes sense, educate and empower users on using a dashboard instead. They will need to know how to filter a table and do data transformation."],
+      ["Legal requirement", "Legal requirement may dictate that the information is pushed to the user.", "Politically, in some situations you can say you've done your job when the report is delivered to the user inbox, regardless whether the user actually reads it or not.", "Typical audience: different legal entity. Paying customer."],
+      ["Printed document", "In some meetings, stack of printed documents can complement laptop as it's easier to pass around.", "In some situations, government policy may require the report to be signed.", "Limitation: you need to manually design the widget size to fit the paper."],
+      ["Historical copies", "You need to keep an external copy of the data. This is applicable for functions such as capacity management and compliance management.", "If you want to compare at fixed and regular intervals, such as every week from Monday 00:00 hours to Sunday 00:00 hours, then it's more convenient via report. Comparing a specific date (e.g. each month of the year) is also easier on a report.", "This is best done via a simple CSV file as files can be compared in a spreadsheet if they have identical layout. Since many historical data is stored, be specific on the information as changing the format makes comparison difficult."],
+      ["Attachment", "A file can easily be attached to email or other system."]
+    ]
+  },
   "team.it.reports": "Automated reporting on infrastructure ROI, hardware lifecycle milestones, aggregated security posture, availability against target, incident and change summary, capacity forecast, cost against budget, and open risks",
 };
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-pop]").forEach(function (el) {
-    el.textContent = POPUP_TEXT[el.getAttribute("data-pop")] || "";
+    var value = POPUP_TEXT[el.getAttribute("data-pop")] || "";
+    if (typeof value === "string") { el.textContent = value; return; }
+    // Structured popup: { title, intro, rows: [[label, paragraph, ...], ...] }
+    var head = document.createElement("div");
+    head.className = "rep-head";
+    head.textContent = value.title;
+    var intro = document.createElement("div");
+    intro.className = "rep-intro";
+    intro.textContent = value.intro;
+    el.appendChild(head);
+    el.appendChild(intro);
+    value.rows.forEach(function (row) {
+      var r = document.createElement("div");
+      r.className = "rep-row";
+      var label = document.createElement("div");
+      label.className = "rep-label";
+      label.textContent = row[0];
+      var body = document.createElement("div");
+      body.className = "rep-body";
+      row.slice(1).forEach(function (text) {
+        var p = document.createElement("p");
+        p.textContent = text;
+        body.appendChild(p);
+      });
+      r.appendChild(label);
+      r.appendChild(body);
+      el.appendChild(r);
+    });
+  });
+  // Row info buttons: each button toggles its own panel below the diagram. Escape closes all.
+  document.querySelectorAll(".rep-btn").forEach(function (btn) {
+    var panel = document.getElementById(btn.getAttribute("aria-controls"));
+    btn.addEventListener("click", function () {
+      var open = !panel.classList.contains("open");
+      panel.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    document.querySelectorAll(".rep-panel.open").forEach(function (p) { p.classList.remove("open"); });
+    document.querySelectorAll(".rep-btn").forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
   });
 });
 </script>
@@ -316,7 +407,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="pop" data-pop="cadence.monthly"></div>
   </div>
 
-  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="13" rx="2" fill="#2F6FB0"/><rect x="4" y="5" width="16" height="9" rx="1" fill="#DCEBFA"/><path d="M5 10.5h3l1.5-3 2 6 1.5-3H19" fill="none" stroke="#E8786B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="10" y="16" width="4" height="2" fill="#2F6FB0"/><rect x="7" y="18.5" width="10" height="2" rx="1" fill="#2F6FB0"/></svg></span>Live Screen</div>
+  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="13" rx="2" fill="#2F6FB0"/><rect x="4" y="5" width="16" height="9" rx="1" fill="#DCEBFA"/><path d="M5 10.5h3l1.5-3 2 6 1.5-3H19" fill="none" stroke="#E8786B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="10" y="16" width="4" height="2" fill="#2F6FB0"/><rect x="7" y="18.5" width="10" height="2" rx="1" fill="#2F6FB0"/></svg></span>Live Screen<button class="info rep-btn" type="button" aria-label="Show best practice for a NOC screen" aria-expanded="false" aria-controls="live-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button></div>
   <div class="cell">
     <span class="tag noc" tabindex="0">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.live"></span></span>
   </div>
@@ -324,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="cell empty"></div>
   <div class="cell empty"></div>
 
-  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a6 6 0 0 0-6 6v4l-2 3h16l-2-3v-4a6 6 0 0 0-6-6z" fill="#E0A526"/><path d="M9.5 19a2.5 2.5 0 0 0 5 0z" fill="#B7791F"/><circle cx="18" cy="5.5" r="3.6" fill="#D7261E"/><rect x="17.2" y="3.6" width="1.6" height="2.9" fill="#FFFFFF"/><rect x="17.2" y="7" width="1.6" height="1.3" fill="#FFFFFF"/></svg></span>AI Alerts</div>
+  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a6 6 0 0 0-6 6v4l-2 3h16l-2-3v-4a6 6 0 0 0-6-6z" fill="#E0A526"/><path d="M9.5 19a2.5 2.5 0 0 0 5 0z" fill="#B7791F"/><circle cx="18" cy="5.5" r="3.6" fill="#D7261E"/><rect x="17.2" y="3.6" width="1.6" height="2.9" fill="#FFFFFF"/><rect x="17.2" y="7" width="1.6" height="1.3" fill="#FFFFFF"/></svg></span>Alerts</div>
   <div class="cell">
     <span class="tag noc" tabindex="0">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.live"></span></span>
   </div>
@@ -332,7 +423,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="cell empty"></div>
   <div class="cell empty"></div>
 
-  <div class="rowlabel" style="flex-direction:column; align-items:flex-start"><div style="display:flex; align-items:center"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17a9 9 0 0 1 18 0" fill="none" stroke="#2A9D8F" stroke-width="3.4" stroke-linecap="round"/><path d="M12 17l4.5-5" stroke="#14213D" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="2" fill="#14213D"/><path d="M19.5 1.8l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="#7A4E9C"/></svg></span>AI Dashboard</div><small style="display:block; font-size:11px; font-weight:400; margin-top:2px; color:var(--muted)">Personalized to each person, not just role. Covers both Alert + Insight.</small></div>
+  <div class="rowlabel" style="flex-direction:column; align-items:flex-start; position:relative"><div style="display:flex; align-items:center"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17a9 9 0 0 1 18 0" fill="none" stroke="#2A9D8F" stroke-width="3.4" stroke-linecap="round"/><path d="M12 17l4.5-5" stroke="#14213D" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="2" fill="#14213D"/><path d="M19.5 1.8l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="#7A4E9C"/></svg></span>Dashboard<button class="info rep-btn" type="button" aria-label="Show how to design a dashboard" aria-expanded="false" aria-controls="dash-panel" style="position:absolute; right:10px; top:14px; margin:0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button></div></div>
   <div class="dash">
     <div class="esc-info"><button class="info" type="button" aria-label="Show escalation note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="escalation.note"></span></div>
   <span class="tag noc" tabindex="0" style="grid-column:1 / 2; grid-row:1; justify-self:start; margin-left:114px; width:180px; justify-content:flex-start; padding-left:34px">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.dashboard"></span></span>
@@ -344,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <span class="tag it it-dash" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<a class="dash-link" href="https://e1-rahabok.github.io/VMW-Executive-Dashboard/design/export/" target="_blank" rel="noopener" aria-label="Open executive dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg><span class="dash-pop" data-pop="dash.sample"></span></a><button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
   </div>
 
-  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l5 5v15H5z" fill="#7A4E9C"/><path d="M15 2v5h5z" fill="#C9B3E0"/><rect x="8" y="12" width="2.5" height="6" fill="#FFFFFF"/><rect x="11.5" y="9" width="2.5" height="9" fill="#FFFFFF"/><rect x="15" y="14" width="2.5" height="4" fill="#FFFFFF"/></svg></span>Reports</div>
+  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l5 5v15H5z" fill="#7A4E9C"/><path d="M15 2v5h5z" fill="#C9B3E0"/><rect x="8" y="12" width="2.5" height="6" fill="#FFFFFF"/><rect x="11.5" y="9" width="2.5" height="9" fill="#FFFFFF"/><rect x="15" y="14" width="2.5" height="4" fill="#FFFFFF"/></svg></span>Reports<button class="info rep-btn" type="button" aria-label="Show where a report beats a dashboard" aria-expanded="false" aria-controls="rep-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button></div>
   <div class="cell empty"></div>
   <div class="cell empty"></div>
   <div class="cell" style="grid-column:4 / 6">
@@ -352,6 +443,9 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </div>
 
+<div class="rep-panel" id="dash-panel" data-pop="dash.design"></div>
+<div class="rep-panel" id="live-panel" data-pop="live.bestpractice"></div>
+<div class="rep-panel" id="rep-panel" data-pop="reports.edge"></div>
 <footer>Source: Private Cloud Management, 5th edition. Empty cells mean no defined use case at that cadence.<br>Note: Ad hoc tasks are not shown. Longer cadences, such as quarterly, are not shown.</footer>
 <svg id="esc" width="1280" height="720" style="position:absolute; left:0; top:0; pointer-events:none; overflow:visible"></svg>
 <script>
