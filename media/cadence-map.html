@@ -215,6 +215,12 @@
   .esc-info:hover .pop, .esc-info:focus-within .pop { display: block; }
   /* IT Leaders: one identical style everywhere */
   .tag.it { background-color: #13325E; background-image: linear-gradient(180deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 70%); box-shadow: 0 3px 8px rgba(20,33,61,.22); color: #FFFFFF; }
+  /* Dashboard link icon on the IT Leaders bar (dashboard row only) */
+  .dash .tag .dash-link { position: absolute; left: 8px; top: 50%; margin-top: -11px; width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.7); background: rgba(255,255,255,.14); color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; }
+  .dash .tag .dash-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .dash .tag .dash-link:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
 </style>
 </head>
 <body>
@@ -323,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <span class="tag cap" tabindex="0" style="grid-column:3 / 5; grid-row:4">Capacity + FinOps Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.capacity"></span></span>
     <span class="tag l3" tabindex="0" style="grid-column:3 / 5; grid-row:5">L3 Team (Engineering)<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.l3"></span></span>
     <span class="tag dr" tabindex="0" style="grid-column:3 / 5; grid-row:6">Backup + DR Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.dr"></span></span>
-    <span class="tag it" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
+    <span class="tag it" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<a class="dash-link" href="https://e1-rahabok.github.io/VMW-Executive-Dashboard/design/export/" target="_blank" rel="noopener" aria-label="Open executive dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg></a><button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
   </div>
 
   <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l5 5v15H5z" fill="#7A4E9C"/><path d="M15 2v5h5z" fill="#C9B3E0"/><rect x="8" y="12" width="2.5" height="6" fill="#FFFFFF"/><rect x="11.5" y="9" width="2.5" height="9" fill="#FFFFFF"/><rect x="15" y="14" width="2.5" height="4" fill="#FFFFFF"/></svg></span>Reports</div>
