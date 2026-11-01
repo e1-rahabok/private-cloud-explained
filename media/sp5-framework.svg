@@ -55,7 +55,7 @@
   <polygon points="845,208 875,208 875,262 887,262 860,290 833,262 845,262" fill="url(#arrowV)"/>
 
   <!-- Operations: highlighted 5 Pillars -->
-  <text x="568" y="334" text-anchor="middle" font-size="26" fill="#14213D">The 5 <tspan font-weight="700" fill="#0F7B8A">Pillars</tspan> of IT Operations Management for SDDC</text>
+  <text x="568" y="334" text-anchor="middle" font-size="20" fill="#14213D">The 5 <tspan font-weight="700" fill="#0F7B8A">Pillars</tspan> of IT Operations Management for SDDC</text>
 
   <g font-size="17" text-anchor="middle" fill="#14213D">
     <rect x="157" y="341" width="137" height="40" rx="4" fill="url(#pillarHi)" stroke="#9FD0D6" stroke-width="1"/>
