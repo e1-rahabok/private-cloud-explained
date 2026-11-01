@@ -1,0 +1,34 @@
+name: Sync cadence map to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "media/cadence-map.html"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy source to Pages folder
+        run: |
+          mkdir -p docs/cadence-map
+          cp media/cadence-map.html docs/cadence-map/index.html
+
+      - name: Commit if changed
+        run: |
+          git config user.name "Haiku 5.5 Low"
+          git config user.email "noreply@anthropic.com"
+          git add docs/cadence-map/index.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Sync cadence map to Pages"
+            git push
+          fi

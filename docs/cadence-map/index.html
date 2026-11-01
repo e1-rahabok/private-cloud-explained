@@ -215,6 +215,15 @@
   .esc-info:hover .pop, .esc-info:focus-within .pop { display: block; }
   /* IT Leaders: one identical style everywhere */
   .tag.it { background-color: #13325E; background-image: linear-gradient(180deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 70%); box-shadow: 0 3px 8px rgba(20,33,61,.22); color: #FFFFFF; }
+  /* Dashboard link icon on the IT Leaders bar (dashboard row only) */
+  .dash .tag .dash-link { position: absolute; left: 28px; top: 50%; margin-top: -12px; width: 24px; height: 24px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.9);
+    background: linear-gradient(135deg, #FFB347 0%, #F26B8A 35%, #7C5CFF 65%, #3FD0C9 100%);
+    box-shadow: 0 0 6px 1px rgba(255,179,71,.85), 0 0 14px 3px rgba(63,208,201,.6), 0 0 22px 6px rgba(124,92,255,.35);
+    color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; }
+  .dash .tag .dash-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .dash .tag .dash-link:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
 </style>
 </head>
 <body>
@@ -234,20 +243,20 @@
      team.*           Team bars in the AI Dashboard and Reports
    ========================================================================== */
 const POPUP_TEXT = {
-  "cadence.live": "Streaming, auto-updating on the big TV screen with auto-rotation",
-  "cadence.daily": "Quick, 5 min review at start of day. Focus on the day ahead only. Time consuming check is not operationally practical.",
-  "cadence.weekly": "1 hour deeper dive at start of week. Plan ahead for the week. Insight analysis.",
-  "cadence.monthly": "Big team review. Half a day at start of month. Review past month, plan ahead.",
-  "noc.live": "Monitors the live screen and triages AI alerts in real time, escalating issues to Level 2.",
-  "noc.dashboard": "Use the Shift Handover dashboard to support the transition between shifts",
-  "escalation.note": "Escalation path follows the Exit Criteria + Entry Criteria forms",
-  "team.l2": "Proactive performance analysis using both insight + alert. Reclamation and rightsizing.",
-  "team.capacity": "Capacity Planning and cost optimization",
-  "team.l3": "Plan and design the overall system architecture, perform deep troubleshooting and engage vendor to solve escalation",
-  "team.security": "Monitor security posture, respond to security alerts, and check compliance with policies such as the MAS AI risk guidelines.",
-  "team.dr": "Confirm backups complete successfully and run restore and disaster recovery tests on schedule.",
-  "team.it.dashboard": "Review overall health, risks, and trends on the dashboard, and set priorities and approve decisions.",
-  "team.it.reports": "Receive weekly and monthly reports to track operations, capacity, and performance for oversight and decisions.",
+  "cadence.live": "NOC wall display, auto-refreshing. Shows big picture, not just alerts, as the goal is proactive and not waiting for alerts. Using a purpose built dashboard, L1 Staff is empowered to perform L1 analysis to reduce escalation to L2",
+  "cadence.daily": "Quick 5 minutes else human will fall back to reactive. Focus on insight with the sole goal to prevent alerts coming during the next 24 hours. Defer deep analysis to the weekly review.",
+  "cadence.weekly": "About 1 hour at start of week. Review last week's alerts and insight to ensure the week will be fine. Confirm next week's maintenance windows and changes. Output: actions with named owners and due dates.",
+  "cadence.monthly": "Full team meeting to ensure cross team collaboration. Review the 4 SLA types (Availability, Performance, Security, Service). Review major, recurring incidents, capacity forecast against headroom. Output: actions for the next month with named owners and due dates.",
+  "noc.live": "Watches the live screen and AI alerts. Acknowledges each alert, confirms severity, and opens or updates an incident. Runs the first-line runbook for known alerts. Triggers API-driven for L2 escalation. Also logs and routes help desk requests.",
+  "noc.dashboard": "Shift handover record for AI analysis. Using the Shift Handover dashboard, the outgoing shift explains open incidents, acknowledged alerts, pending changes, and watch items. The incoming shift confirms receipt.",
+  "escalation.note": "API-driven escalation, with L1 Exit Criteria and L2 Entry Criteria form filled. This captures knowledge for AI analysis.",
+  "team.l2": "Diagnoses and resolves incidents escalated from NOC across platform, storage, network, Kubernetes, AI workloads, and QA of changes. Owns the change plan and post-change checks for its domains. Opens a problem record when an incident recurs.",
+  "team.capacity": "Tracks utilization and headroom for clusters, hosts, datastores, and networks against defined usable capacity. Forecasts when expansion is needed. Reviews cloud cost reports and assigns cost drivers to owners.",
+  "team.l3": "Handles escalations L2 cannot resolve: product defects, design faults, and deep troubleshooting. Opens and tracks vendor support cases with Broadcom. Owns root cause analysis for major incidents.",
+  "team.security": "Monitors security events from vDefend and NSX and responds to security incidents. Checks firewall rules and access configuration against policy. Validates infrastructure compliance against MAS TRM and AI risk guidelines using continuous drift detection.",
+  "team.dr": "Checks backup job results each day and resolves failed jobs. Manages VMware Site Recovery Manager (SRM). Validates RPO/RTO SLA compliance via automated non-disruptive DR testing.",
+  "team.it.dashboard": "Using the Executive Dashboard, reviews service availability, major incidents, and capacity risks. Approves changes with significant business risk and sets priorities for the next period.",
+  "team.it.reports": "Automated reporting on infrastructure ROI, hardware lifecycle milestones, aggregated security posture, availability against target, incident and change summary, capacity forecast, cost against budget, and open risks",
 };
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-pop]").forEach(function (el) {
@@ -317,13 +326,13 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="rowlabel" style="flex-direction:column; align-items:flex-start"><div style="display:flex; align-items:center"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17a9 9 0 0 1 18 0" fill="none" stroke="#2A9D8F" stroke-width="3.4" stroke-linecap="round"/><path d="M12 17l4.5-5" stroke="#14213D" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="2" fill="#14213D"/><path d="M19.5 1.8l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="#7A4E9C"/></svg></span>AI Dashboard</div><small style="display:block; font-size:11px; font-weight:400; margin-top:2px; color:var(--muted)">Personalized to each person, not just role. Covers both Alert + Insight.</small></div>
   <div class="dash">
     <div class="esc-info"><button class="info" type="button" aria-label="Show escalation note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="escalation.note"></span></div>
-  <span class="tag noc" tabindex="0" style="grid-column:2 / 3; grid-row:1">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.dashboard"></span></span>
+  <span class="tag noc" tabindex="0" style="grid-column:1 / 2; grid-row:1; justify-self:start; margin-left:114px; width:180px; justify-content:flex-start; padding-left:34px">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.dashboard"></span></span>
     <span class="tag l2" tabindex="0" style="grid-column:2 / 5; grid-row:2">L2 Team (Platform, Storage, Network, Kubernetes, AI, QA)<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.l2"></span></span>
     <span class="tag sec" tabindex="0" style="grid-column:2 / 5; grid-row:3">Security + Compliance Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.security"></span></span>
     <span class="tag cap" tabindex="0" style="grid-column:3 / 5; grid-row:4">Capacity + FinOps Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.capacity"></span></span>
     <span class="tag l3" tabindex="0" style="grid-column:3 / 5; grid-row:5">L3 Team (Engineering)<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.l3"></span></span>
     <span class="tag dr" tabindex="0" style="grid-column:3 / 5; grid-row:6">Backup + DR Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.dr"></span></span>
-    <span class="tag it" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
+    <span class="tag it" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<a class="dash-link" href="https://e1-rahabok.github.io/VMW-Executive-Dashboard/design/export/" target="_blank" rel="noopener" aria-label="Open executive dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg></a><button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
   </div>
 
   <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l5 5v15H5z" fill="#7A4E9C"/><path d="M15 2v5h5z" fill="#C9B3E0"/><rect x="8" y="12" width="2.5" height="6" fill="#FFFFFF"/><rect x="11.5" y="9" width="2.5" height="9" fill="#FFFFFF"/><rect x="15" y="14" width="2.5" height="4" fill="#FFFFFF"/></svg></span>Reports</div>
