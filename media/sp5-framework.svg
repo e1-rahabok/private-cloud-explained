@@ -29,22 +29,22 @@
 
   <!-- Business: Strategy -->
   <rect x="157" y="36" width="823" height="80" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
-  <text x="568" y="72" text-anchor="middle" font-size="28" font-weight="700" fill="#14213D">Strategy</text>
-  <text x="568" y="96" text-anchor="middle" font-size="15" fill="#3D4758">SLA-backed Enterprise Private Cloud</text>
+  <text x="568" y="76" text-anchor="middle" font-size="28" font-weight="700" fill="#14213D">Strategy</text>
+  <text x="568" y="100" text-anchor="middle" font-size="15" fill="#3D4758">SLA-backed Enterprise Private Cloud</text>
 
   <!-- Business: Policy, Process -->
   <rect x="157" y="122" width="240" height="82" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
-  <text x="277" y="157" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">Policy</text>
-  <text x="277" y="183" text-anchor="middle" font-size="15" fill="#3D4758">Business | IT</text>
+  <text x="277" y="161" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">Policy</text>
+  <text x="277" y="187" text-anchor="middle" font-size="15" fill="#3D4758">Business | IT</text>
 
   <rect x="740" y="122" width="240" height="82" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
-  <text x="860" y="157" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">Process</text>
-  <text x="860" y="183" text-anchor="middle" font-size="15" fill="#3D4758">Day 2 → Day 0 → Day 1</text>
+  <text x="860" y="161" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">Process</text>
+  <text x="860" y="187" text-anchor="middle" font-size="15" fill="#3D4758">Day 2 → Day 0 → Day 1</text>
 
   <!-- Business: People with timeline -->
   <rect x="398" y="204" width="342" height="81" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
-  <text x="568" y="238" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">People</text>
-  <text x="568" y="264" text-anchor="middle" font-size="15" fill="#3D4758">Users | IT Apps | IT Infra | Leadership</text>
+  <text x="568" y="241" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">People</text>
+  <text x="568" y="267" text-anchor="middle" font-size="15" fill="#3D4758">Users | IT Apps | IT Infra | Leadership</text>
 
   <!-- Timeline double arrow (horizontal + vertical) -->
   <polygon points="420,163 452,148 452,156 684,156 684,148 716,163 684,178 684,170 452,170 452,178" fill="url(#arrowG)"/>
