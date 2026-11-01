@@ -76,7 +76,7 @@
 
     <rect x="843" y="341" width="137" height="40" rx="4" fill="url(#pillarHi)" stroke="#9FD0D6" stroke-width="1"/>
     <rect x="843" y="341" width="137" height="3" rx="1.5" fill="#0F7B8A"/>
-    <text x="911" y="367">Cost + Price</text>
+    <text x="911" y="367">Value</text>
   </g>
 
   <rect x="157" y="389" width="823" height="40" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
