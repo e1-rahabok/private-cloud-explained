@@ -184,6 +184,19 @@
     display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
   .dash .tag .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
   .dash .tag .info:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  /* Popup and info button styles for tags outside the AI Dashboard panel */
+  .tag .pop { display: none; position: absolute; top: calc(100% + 8px); left: 0; width: 300px; z-index: 30;
+    background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18); padding: 10px 12px; font-size: 13px; line-height: 1.45; font-weight: 400;
+    white-space: normal; text-align: left; cursor: default; }
+  .tag:hover .pop, .tag:focus-within .pop { display: block; }
+  .tag:hover, .tag:focus-within { z-index: 30; }
+  .tag .info { position: absolute; right: 8px; top: 50%; left: auto; bottom: auto; margin-top: -11px;
+    width: 22px; height: 22px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
+  .tag .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+  .tag .info:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  .tag[tabindex] { cursor: pointer; }
 </style>
 </head>
 <body>
