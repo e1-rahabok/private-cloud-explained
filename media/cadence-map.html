@@ -203,7 +203,7 @@
   #esc path.flow { animation: flow 1.6s linear infinite; }
   @media (prefers-reduced-motion: reduce) { #esc path.flow { animation: none; } }
   /* Escalation note info button in the empty AI Dashboard column */
-  .dash .esc-info { grid-column: 1; grid-row: 3; position: relative; display: flex; align-items: center; justify-content: center; }
+  .dash .esc-info { grid-column: 1; grid-row: 2 / span 2; align-self: center; justify-self: start; margin-left: calc(50% + 19px); position: relative; display: flex; align-items: center; justify-content: center; }
   .esc-info:hover, .esc-info:focus-within { z-index: 30; }
   .esc-info .info { width: 26px; height: 26px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
     display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
