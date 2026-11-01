@@ -233,9 +233,7 @@
     box-shadow: 0 10px 24px rgba(0,0,0,.12); padding: 14px 18px; font-size: 13px; line-height: 1.45; font-weight: 400; text-align: left; }
   .rep-panel.open { display: block; }
   .alert-diagram svg { display: block; width: 100%; max-width: 980px; height: auto; margin: 0 auto 10px; }
-  .alert-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; margin-bottom: 12px; font-size: 14px; }
-  .alert-swatch { display: flex; align-items: center; gap: 10px; }
-  .alert-swatch span { width: 28px; height: 22px; border-radius: 2px; flex: none; border: 1px solid #D0D0D0; }
+  .rep-swatch { display: inline-block; width: 14px; height: 14px; border-radius: 2px; border: 1px solid #C8C8C8; margin-right: 8px; vertical-align: -2px; }
   .rep-head { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
   .rep-intro { color: #444444; margin-bottom: 8px; }
   .rep-row { display: grid; grid-template-columns: 170px 1fr; gap: 12px; padding: 7px 0; border-top: 1px solid #E6E6E6; }
@@ -284,12 +282,39 @@ const POPUP_TEXT = {
   "dash.sample": "Try a sample dashboard",
   "team.it.dashboard": "Using the Executive Dashboard, reviews service availability, major incidents, and capacity risks. Approves changes with significant business risk and sets priorities for the next period.",
   "alert.guide": {
-    "title": "Alerts: how to act on each color",
-    "intro": "Above is about an object. It may have its metric crossed a threshold, its configuration changed, or its state changed. Let's summarize how the colors translate into day-to-day operations:",
+    "title": "Why 3 colors?",
+    "intro": "",
     "rows": [
-      ["Yellow", "Symptom. Non urgent. Leading Indicators. Symptoms. Could be important, could also be false positive."],
-      ["Orange", "Alert. Urgent, but importance is not high. Attend by end of day, do not delay until tomorrow."],
-      ["Red", "Alert. Urgent and important. However, it does not always mean you must drop everything you do and start firefighting in seconds. Attend within 1-2 hours.", "There is a small subset of Red where you need to drop everything. Think of it as emergency. It may not be important, but it's definitely urgent. If you get the alert at 0200 hours, you attend to it at 02:00 as each minute matters.", "An analogy we can relate in life is you accidentally cut yourself. Even though it's not life threatening, you want to stop the bleeding immediately, not 1 minute later. The good part is such emergency situation rarely happens. There is no alert defined for it in VCF yet. I'm keen to hear a real-world suggestion!"]
+      {
+        "label": "Red",
+        "color": "#FF0000",
+        "text": [
+          "Review it today, the sooner the better. Alert. Urgent and important. However, it does not always mean you must drop everything you do and start firefighting in seconds. Attend within 1-2 hours.",
+          "There is a small subset of Red where you need to drop everything. Think of it as emergency. It may not be important, but it's definitely urgent. If you get the alert at 0200 hours, you attend to it at 02:00 as each minute matters.",
+          "An analogy we can relate in life is you accidentally cut yourself. Even though it's not life threatening, you want to stop the bleeding immediately, not 1 minute later. The good part is such emergency situation rarely happens. There is no alert defined for it in VCF yet. I'm keen to hear a real-world suggestion!"
+        ]
+      },
+      {
+        "label": "Orange",
+        "color": "#FFC000",
+        "text": [
+          "Review it today. Alert. Urgent, but importance is not high. Attend by end of day, do not delay until tomorrow."
+        ]
+      },
+      {
+        "label": "Yellow",
+        "color": "#FFFF00",
+        "text": [
+          "Review it tomorrow (could be a false positive). Symptom. Non urgent. Leading Indicators. Symptoms. Could be important, could also be false positive."
+        ]
+      },
+      {
+        "label": "Green",
+        "color": "#92D050",
+        "text": [
+          "Great!"
+        ]
+      }
     ]
   },
   "dash.design": {
@@ -338,20 +363,29 @@ document.addEventListener("DOMContentLoaded", function () {
     var head = document.createElement("div");
     head.className = "rep-head";
     head.textContent = value.title;
-    var intro = document.createElement("div");
-    intro.className = "rep-intro";
-    intro.textContent = value.intro;
     el.appendChild(head);
-    el.appendChild(intro);
+    if (value.intro) {
+      var intro = document.createElement("div");
+      intro.className = "rep-intro";
+      intro.textContent = value.intro;
+      el.appendChild(intro);
+    }
     value.rows.forEach(function (row) {
+      var isObj = !Array.isArray(row);
       var r = document.createElement("div");
       r.className = "rep-row";
       var label = document.createElement("div");
       label.className = "rep-label";
-      label.textContent = row[0];
+      if (isObj && row.color) {
+        var sw = document.createElement("span");
+        sw.className = "rep-swatch";
+        sw.style.background = row.color;
+        label.appendChild(sw);
+      }
+      label.appendChild(document.createTextNode(isObj ? row.label : row[0]));
       var body = document.createElement("div");
       body.className = "rep-body";
-      row.slice(1).forEach(function (text) {
+      (isObj ? row.text : row.slice(1)).forEach(function (text) {
         var p = document.createElement("p");
         p.textContent = text;
         body.appendChild(p);
@@ -458,63 +492,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <div class="rep-panel" id="alert-panel">
   <div class="alert-diagram">
-    <svg viewBox="0 0 1000 320" role="img" aria-label="Alert decision flow" font-family="Segoe UI, Arial, sans-serif">
+    <svg viewBox="0 0 1000 370" role="img" aria-label="Alert decision flow" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#000">
       <defs>
-        <marker id="ah-k" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#000000"/></marker>
-        <marker id="ah-o" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F7941D"/></marker>
-        <marker id="ah-a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FFC000"/></marker>
-        <marker id="ah-r" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FF0000"/></marker>
-        <marker id="ah-y" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FFFF00"/></marker>
+        <marker id="ah-k" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#000"/></marker>
+        <marker id="ah-o" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F7941D"/></marker>
+        <marker id="ah-a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FFC000"/></marker>
+        <marker id="ah-r" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FF0000"/></marker>
+        <marker id="ah-y" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FFFF00"/></marker>
       </defs>
-      <!-- Start box -->
-      <rect x="10" y="60" width="150" height="90" fill="#D9D9D9"/>
-      <text x="85" y="95" text-anchor="middle" font-size="18" fill="#000">Something</text>
-      <text x="85" y="118" text-anchor="middle" font-size="18" fill="#000">happened or</text>
-      <text x="85" y="141" text-anchor="middle" font-size="18" fill="#000">changed</text>
-      <line x1="160" y1="105" x2="232" y2="105" stroke="#000" stroke-width="3" marker-end="url(#ah-k)"/>
-      <!-- Urgent? diamond -->
-      <polygon points="240,105 330,45 420,105 330,165" fill="#D9D9D9"/>
-      <text x="330" y="100" text-anchor="middle" font-size="18" fill="#000">Urgent?</text>
-      <text x="330" y="124" text-anchor="middle" font-size="14" fill="#000">Do you need to act on</text>
-      <text x="330" y="144" text-anchor="middle" font-size="14" fill="#000">it today?</text>
-      <!-- Yes branch -->
-      <line x1="420" y1="105" x2="528" y2="105" stroke="#F7941D" stroke-width="3" marker-end="url(#ah-o)"/>
-      <text x="470" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#000">Yes.</text>
-      <text x="470" y="132" text-anchor="middle" font-size="16" font-weight="700" fill="#000">Buzz me now</text>
-      <!-- ACK diamond -->
-      <polygon points="528,105 600,45 672,105 600,165" fill="#D9D9D9"/>
-      <text x="600" y="92" text-anchor="middle" font-size="17" fill="#000">ACK.</text>
-      <text x="600" y="114" text-anchor="middle" font-size="17" fill="#000">When do I</text>
-      <text x="600" y="136" text-anchor="middle" font-size="17" fill="#000">act on it?</text>
-      <text x="600" y="206" text-anchor="middle" font-size="14" fill="#000">The wider the impact,</text>
-      <text x="600" y="226" text-anchor="middle" font-size="14" fill="#000">the higher the importance.</text>
-      <!-- ASAP branch to High -->
-      <line x1="672" y1="95" x2="812" y2="32" stroke="#FF0000" stroke-width="3" marker-end="url(#ah-r)"/>
-      <text x="718" y="72" text-anchor="middle" font-size="16" font-weight="700" fill="#000">ASAP</text>
-      <!-- Sometimes today branch to Medium -->
-      <line x1="672" y1="115" x2="812" y2="168" stroke="#FFC000" stroke-width="3" marker-end="url(#ah-a)"/>
-      <text x="718" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#000">Sometimes</text>
-      <text x="718" y="170" text-anchor="middle" font-size="15" font-weight="700" fill="#000">today</text>
-      <!-- Urgent No branch to Low (yellow) -->
-      <line x1="330" y1="165" x2="330" y2="250" stroke="#FFFF00" stroke-width="4"/>
-      <line x1="330" y1="250" x2="812" y2="250" stroke="#FFFF00" stroke-width="4" marker-end="url(#ah-y)"/>
-      <text x="345" y="272" font-size="15" font-weight="700" fill="#000">No. Next Business Day is better.</text>
-      <text x="345" y="290" font-size="15" font-weight="700" fill="#000">Don't buzz me; see it as part of the</text>
-      <text x="345" y="308" font-size="15" font-weight="700" fill="#000">Daily Health Check.</text>
+
+      <!-- Start: something happened or changed -->
+      <rect x="10" y="95" width="160" height="100" fill="#D9D9D9"/>
+      <text x="90" y="141" text-anchor="middle">Something</text>
+      <text x="90" y="161" text-anchor="middle">happened or</text>
+      <text x="90" y="181" text-anchor="middle">changed</text>
+      <line x1="170" y1="145" x2="222" y2="145" stroke="#000" stroke-width="3" marker-end="url(#ah-k)"/>
+
+      <!-- Decision 1: Urgent? -->
+      <polygon points="225,145 340,65 455,145 340,225" fill="#D9D9D9"/>
+      <text x="340" y="139" text-anchor="middle">Urgent?</text>
+      <text x="340" y="160" text-anchor="middle">Do you need to</text>
+      <text x="340" y="180" text-anchor="middle">act on it today?</text>
+
+      <!-- Yes: buzz now (orange) -->
+      <line x1="455" y1="145" x2="542" y2="145" stroke="#F7941D" stroke-width="3" marker-end="url(#ah-o)"/>
+      <text x="498" y="128" text-anchor="middle" font-weight="700">Yes.</text>
+      <text x="498" y="172" text-anchor="middle" font-weight="700">Buzz me now</text>
+
+      <!-- Decision 2: ACK, when do I act -->
+      <polygon points="545,145 640,65 735,145 640,225" fill="#D9D9D9"/>
+      <text x="640" y="128" text-anchor="middle">ACK.</text>
+      <text x="640" y="148" text-anchor="middle">When do I</text>
+      <text x="640" y="168" text-anchor="middle">act on it?</text>
+      <text x="640" y="262" text-anchor="middle">The wider the impact,</text>
+      <text x="640" y="282" text-anchor="middle">the higher the importance.</text>
+
+      <!-- ASAP to High (red) -->
+      <line x1="735" y1="125" x2="856" y2="46" stroke="#FF0000" stroke-width="3" marker-end="url(#ah-r)"/>
+      <text x="790" y="84" text-anchor="middle" font-weight="700">ASAP</text>
+
+      <!-- Sometimes today to Medium (amber) -->
+      <line x1="735" y1="160" x2="856" y2="172" stroke="#FFC000" stroke-width="3" marker-end="url(#ah-a)"/>
+      <text x="790" y="203" text-anchor="middle" font-weight="700">Sometimes</text>
+      <text x="790" y="223" text-anchor="middle" font-weight="700">today</text>
+
+      <!-- No: next business day to Low (yellow) -->
+      <polyline points="340,225 340,290 856,290" fill="none" stroke="#FFFF00" stroke-width="4" marker-end="url(#ah-y)"/>
+      <text x="356" y="318" font-weight="700">No. Next Business Day is better.</text>
+      <text x="356" y="338" font-weight="700">Don't buzz me; see it as part of the</text>
+      <text x="356" y="358" font-weight="700">Daily Health Check.</text>
+
       <!-- Importance boxes -->
-      <rect x="820" y="5" width="170" height="70" fill="#FF0000"/>
-      <text x="905" y="48" text-anchor="middle" font-size="19" fill="#000">High Importance</text>
-      <rect x="820" y="105" width="170" height="70" fill="#F7941D"/>
-      <text x="905" y="148" text-anchor="middle" font-size="19" fill="#000">Medium Importance</text>
-      <rect x="820" y="215" width="170" height="60" fill="#FFFF00"/>
-      <text x="905" y="251" text-anchor="middle" font-size="19" fill="#000">Low Importance</text>
+      <rect x="860" y="10" width="130" height="70" fill="#FF0000"/>
+      <text x="925" y="40" text-anchor="middle">High</text>
+      <text x="925" y="60" text-anchor="middle">Importance</text>
+
+      <rect x="860" y="115" width="130" height="70" fill="#F7941D"/>
+      <text x="925" y="145" text-anchor="middle">Medium</text>
+      <text x="925" y="165" text-anchor="middle">Importance</text>
+
+      <rect x="860" y="255" width="130" height="70" fill="#FFFF00"/>
+      <text x="925" y="285" text-anchor="middle">Low</text>
+      <text x="925" y="305" text-anchor="middle">Importance</text>
     </svg>
-  </div>
-  <div class="alert-legend">
-    <div class="alert-swatch"><span style="background:#FF0000"></span>Review it today (the sooner the better)</div>
-    <div class="alert-swatch"><span style="background:#FFC000"></span>Review it today</div>
-    <div class="alert-swatch"><span style="background:#FFFF00"></span>Review it tomorrow (could be a false positive)</div>
-    <div class="alert-swatch"><span style="background:#92D050"></span>Great!</div>
   </div>
   <div data-pop="alert.guide"></div>
 </div>
