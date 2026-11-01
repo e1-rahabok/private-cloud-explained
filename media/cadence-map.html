@@ -198,6 +198,10 @@
   .tag .info:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
   .tag[tabindex] { cursor: pointer; }
   .tag { min-height: 44px; }
+  /* Flowing escalation arrows: dashes travel from source to target */
+  @keyframes flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -34; } }
+  #esc path.flow { animation: flow 1.6s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { #esc path.flow { animation: none; } }
 </style>
 </head>
 <body>
@@ -283,7 +287,7 @@
 <script>
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
-  var COLOR = '#E8382B';
+  var COLOR = '#E8786B';
   var R = 14;
   var body = document.body;
   var svg = document.getElementById('esc');
@@ -298,9 +302,12 @@
     path.setAttribute('d', 'M' + sx + ',' + sy + ' V' + (ey - R) + ' Q' + sx + ',' + ey + ' ' + (sx + R) + ',' + ey + ' H' + (ex - 2));
     path.setAttribute('fill', 'none');
     path.setAttribute('stroke', COLOR);
-    path.setAttribute('stroke-width', '1.5');
+    path.setAttribute('stroke-width', '3');
     path.setAttribute('stroke-linejoin', 'round');
     path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('stroke-dasharray', '9 8');
+    path.setAttribute('class', 'flow');
+    path.setAttribute('opacity', '0.9');
     svg.appendChild(path);
     var head = document.createElementNS(NS, 'polygon');
     head.setAttribute('points', (ex - 9) + ',' + (ey - 5) + ' ' + ex + ',' + ey + ' ' + (ex - 9) + ',' + (ey + 5));
