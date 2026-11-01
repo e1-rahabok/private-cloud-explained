@@ -47,8 +47,8 @@
   <text x="568" y="264" text-anchor="middle" font-size="15" fill="#3D4758">Users | IT Apps | IT Infra | Leadership</text>
 
   <!-- Timeline double arrow (horizontal + vertical) -->
-  <polygon points="420,180 452,165 452,173 684,173 684,165 716,180 684,195 684,187 452,187 452,195" fill="url(#arrowG)"/>
-  <text x="568" y="160" text-anchor="middle" font-size="15" fill="#14213D">timeline</text>
+  <polygon points="420,163 452,148 452,156 684,156 684,148 716,163 684,178 684,170 452,170 452,178" fill="url(#arrowG)"/>
+  <text x="568" y="168" text-anchor="middle" font-size="15" fill="#14213D">timeline</text>
 
   <!-- Down arrows from Policy and Process to Operations -->
   <polygon points="262,208 292,208 292,262 304,262 277,290 250,262 262,262" fill="url(#arrowV)"/>
