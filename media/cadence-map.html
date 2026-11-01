@@ -224,6 +224,20 @@
     display: flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; }
   .dash .tag .dash-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .dash .tag .dash-link:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  /* Reports info: button in the row label opens a panel placed below the diagram (click) */
+  .rep-btn { margin-left: auto; width: 24px; height: 24px; border: none; border-radius: 50%; background: #1F6FD1; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); flex: none; }
+  .rep-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+  .rep-btn:focus-visible { outline: 2px solid #111111; outline-offset: 2px; }
+  .rep-panel { display: none; margin-top: 14px; background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.12); padding: 14px 18px; font-size: 13px; line-height: 1.45; font-weight: 400; text-align: left; }
+  .rep-panel.open { display: block; }
+  .rep-head { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .rep-intro { color: #444444; margin-bottom: 8px; }
+  .rep-row { display: grid; grid-template-columns: 170px 1fr; gap: 12px; padding: 7px 0; border-top: 1px solid #E6E6E6; }
+  .rep-label { font-weight: 600; }
+  .rep-body p { margin-bottom: 3px; }
+  .rep-body p:last-child { margin-bottom: 0; }
   /* IT Leaders bar: two separate popups. Icon popup on the icon, info popup on the info button only. */
   .dash .tag.it-dash .pop { display: none !important; }
   .dash .tag.it-dash .info:hover ~ .pop, .dash .tag.it-dash .info:focus-visible ~ .pop { display: block !important; }
@@ -265,11 +279,65 @@ const POPUP_TEXT = {
   "team.dr": "Checks backup job results each day and resolves failed jobs. Manages VMware Site Recovery Manager (SRM). Validates RPO/RTO SLA compliance via automated non-disruptive DR testing.",
   "dash.sample": "Try a sample dashboard",
   "team.it.dashboard": "Using the Executive Dashboard, reviews service availability, major incidents, and capacity risks. Approves changes with significant business risk and sets priorities for the next period.",
+  "reports.edge": {
+    "title": "Where a report beats a dashboard",
+    "intro": "The nature of report means it is better than dashboards in certain situations or use cases, such as:",
+    "rows": [
+      ["Offline", "A typical example is the user is travelling, such as in a plane.", "If the user is not offline, but has limited network bandwidth, a text-based AI-powered chat could be better than report.", "Typical audience: Senior IT Leaders."],
+      ["No access", "The users don't have network access or security clearance to login to VCF Operations.", "Typical audience: external users who cannot reach VCF Operations."],
+      ["Casual user", "Both PDF files and CSV files require less training to users than a system. There is no login required, and usage is generally much simpler."],
+      ["Export", "Export into spreadsheet for further analysis & reporting. Typically, the Finance team or Audit Team want the data as part of their spreadsheet report or PowerPoint presentation.", "If it makes sense, educate and empower users on using a dashboard instead. They will need to know how to filter a table and do data transformation."],
+      ["Legal requirement", "Legal requirement may dictate that the information is pushed to the user.", "Politically, in some situations you can say you've done your job when the report is delivered to the user inbox, regardless whether the user actually reads it or not.", "Typical audience: different legal entity. Paying customer."],
+      ["Printed document", "In some meetings, stack of printed documents can complement laptop as it's easier to pass around.", "In some situations, government policy may require the report to be signed.", "Limitation: you need to manually design the widget size to fit the paper."],
+      ["Historical copies", "You need to keep an external copy of the data. This is applicable for functions such as capacity management and compliance management.", "If you want to compare at fixed and regular intervals, such as every week from Monday 00:00 hours to Sunday 00:00 hours, then it's more convenient via report. Comparing a specific date (e.g. each month of the year) is also easier on a report.", "This is best done via a simple CSV file as files can be compared in a spreadsheet if they have identical layout. Since many historical data is stored, be specific on the information as changing the format makes comparison difficult."],
+      ["Attachment", "A file can easily be attached to email or other system."]
+    ]
+  },
   "team.it.reports": "Automated reporting on infrastructure ROI, hardware lifecycle milestones, aggregated security posture, availability against target, incident and change summary, capacity forecast, cost against budget, and open risks",
 };
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-pop]").forEach(function (el) {
-    el.textContent = POPUP_TEXT[el.getAttribute("data-pop")] || "";
+    var value = POPUP_TEXT[el.getAttribute("data-pop")] || "";
+    if (typeof value === "string") { el.textContent = value; return; }
+    // Structured popup: { title, intro, rows: [[label, paragraph, ...], ...] }
+    var head = document.createElement("div");
+    head.className = "rep-head";
+    head.textContent = value.title;
+    var intro = document.createElement("div");
+    intro.className = "rep-intro";
+    intro.textContent = value.intro;
+    el.appendChild(head);
+    el.appendChild(intro);
+    value.rows.forEach(function (row) {
+      var r = document.createElement("div");
+      r.className = "rep-row";
+      var label = document.createElement("div");
+      label.className = "rep-label";
+      label.textContent = row[0];
+      var body = document.createElement("div");
+      body.className = "rep-body";
+      row.slice(1).forEach(function (text) {
+        var p = document.createElement("p");
+        p.textContent = text;
+        body.appendChild(p);
+      });
+      r.appendChild(label);
+      r.appendChild(body);
+      el.appendChild(r);
+    });
+  });
+  // Reports info: button toggles the panel below the diagram. Escape closes it.
+  var repBtn = document.querySelector(".rep-btn");
+  var repPanel = document.getElementById("rep-panel");
+  function setRepOpen(open) {
+    repPanel.classList.toggle("open", open);
+    repBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  repBtn.addEventListener("click", function () {
+    setRepOpen(!repPanel.classList.contains("open"));
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") setRepOpen(false);
   });
 });
 </script>
@@ -344,7 +412,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <span class="tag it it-dash" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<a class="dash-link" href="https://e1-rahabok.github.io/VMW-Executive-Dashboard/design/export/" target="_blank" rel="noopener" aria-label="Open executive dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg><span class="dash-pop" data-pop="dash.sample"></span></a><button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
   </div>
 
-  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l5 5v15H5z" fill="#7A4E9C"/><path d="M15 2v5h5z" fill="#C9B3E0"/><rect x="8" y="12" width="2.5" height="6" fill="#FFFFFF"/><rect x="11.5" y="9" width="2.5" height="9" fill="#FFFFFF"/><rect x="15" y="14" width="2.5" height="4" fill="#FFFFFF"/></svg></span>Reports</div>
+  <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l5 5v15H5z" fill="#7A4E9C"/><path d="M15 2v5h5z" fill="#C9B3E0"/><rect x="8" y="12" width="2.5" height="6" fill="#FFFFFF"/><rect x="11.5" y="9" width="2.5" height="9" fill="#FFFFFF"/><rect x="15" y="14" width="2.5" height="4" fill="#FFFFFF"/></svg></span>Reports<button class="info rep-btn" type="button" aria-label="Show where a report beats a dashboard" aria-expanded="false" aria-controls="rep-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button></div>
   <div class="cell empty"></div>
   <div class="cell empty"></div>
   <div class="cell" style="grid-column:4 / 6">
@@ -352,6 +420,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </div>
 
+<div class="rep-panel" id="rep-panel" data-pop="reports.edge"></div>
 <footer>Source: Private Cloud Management, 5th edition. Empty cells mean no defined use case at that cadence.<br>Note: Ad hoc tasks are not shown. Longer cadences, such as quarterly, are not shown.</footer>
 <svg id="esc" width="1280" height="720" style="position:absolute; left:0; top:0; pointer-events:none; overflow:visible"></svg>
 <script>
