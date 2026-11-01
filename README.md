@@ -97,3 +97,9 @@ Open decisions:
 - CI system: reuse the existing one, or stand up a minimal one.
 - Whether AskIO sends the whole guide to the model or only retrieved passages.
 - Formats for the watch, listen and play modes.
+
+## Live diagram
+
+The Private Cloud Management cadence map is available as an interactive page: [Open the cadence map](https://e1-rahabok.github.io/private-cloud-explained/cadence-map/). Hover or focus any card or team bar to see its details.
+
+Source: [docs/cadence-map/index.html](docs/cadence-map/index.html)
