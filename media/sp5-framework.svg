@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 985 661" width="985" height="661" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="arrowG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C9CFD8"/>
+      <stop offset="1" stop-color="#8A94A3"/>
+    </linearGradient>
+    <linearGradient id="arrowV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C9CFD8"/>
+      <stop offset="1" stop-color="#8A94A3"/>
+    </linearGradient>
+    <linearGradient id="pillarHi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EAF6F7"/>
+      <stop offset="1" stop-color="#DCEFF1"/>
+    </linearGradient>
+    <filter id="soft" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#14213D" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Lane separators -->
+  <line x1="0" y1="6" x2="985" y2="6" stroke="#9AA3B2" stroke-width="1" stroke-dasharray="2 3"/>
+  <line x1="0" y1="295" x2="985" y2="295" stroke="#9AA3B2" stroke-width="1" stroke-dasharray="2 3"/>
+  <line x1="0" y1="440" x2="985" y2="440" stroke="#9AA3B2" stroke-width="1" stroke-dasharray="2 3"/>
+
+  <!-- Lane labels -->
+  <text x="6" y="30" font-size="20" font-weight="600" fill="#7B8594">Business</text>
+  <text x="6" y="320" font-size="20" font-weight="600" fill="#7B8594">Operations</text>
+  <text x="6" y="466" font-size="20" font-weight="600" fill="#7B8594">Architecture</text>
+
+  <!-- Business: Strategy -->
+  <rect x="157" y="36" width="823" height="80" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
+  <text x="568" y="72" text-anchor="middle" font-size="28" font-weight="700" fill="#14213D">Strategy</text>
+  <text x="568" y="96" text-anchor="middle" font-size="15" fill="#3D4758">SLA-backed Enterprise Private Cloud</text>
+
+  <!-- Business: Policy, Process -->
+  <rect x="157" y="122" width="240" height="82" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
+  <text x="277" y="157" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">Policy</text>
+  <text x="277" y="183" text-anchor="middle" font-size="15" fill="#3D4758">Business | IT</text>
+
+  <rect x="740" y="122" width="240" height="82" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
+  <text x="860" y="157" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">Process</text>
+  <text x="860" y="183" text-anchor="middle" font-size="15" fill="#3D4758">Day 2 → Day 0 → Day 1</text>
+
+  <!-- Business: People with timeline -->
+  <rect x="398" y="204" width="342" height="81" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
+  <text x="568" y="238" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7B8A">People</text>
+  <text x="568" y="264" text-anchor="middle" font-size="15" fill="#3D4758">Users | IT Apps | IT Infra | Leadership</text>
+
+  <!-- Timeline double arrow (horizontal + vertical) -->
+  <polygon points="420,180 452,165 452,173 684,173 684,165 716,180 684,195 684,187 452,187 452,195" fill="url(#arrowG)"/>
+  <text x="568" y="160" text-anchor="middle" font-size="15" fill="#14213D">timeline</text>
+
+  <!-- Down arrows from Policy and Process to Operations -->
+  <polygon points="262,208 292,208 292,262 304,262 277,290 250,262 262,262" fill="url(#arrowV)"/>
+  <polygon points="845,208 875,208 875,262 887,262 860,290 833,262 845,262" fill="url(#arrowV)"/>
+
+  <!-- Operations: highlighted 5 Pillars -->
+  <text x="568" y="334" text-anchor="middle" font-size="26" fill="#14213D">The 5 <tspan font-weight="700" fill="#0F7B8A">Pillars</tspan> of IT Operations Management for SDDC</text>
+
+  <g font-size="17" text-anchor="middle" fill="#14213D">
+    <rect x="157" y="341" width="137" height="40" rx="4" fill="url(#pillarHi)" stroke="#9FD0D6" stroke-width="1"/>
+    <rect x="157" y="341" width="137" height="3" rx="1.5" fill="#0F7B8A"/>
+    <text x="225" y="367">Availability</text>
+
+    <rect x="328" y="341" width="137" height="40" rx="4" fill="url(#pillarHi)" stroke="#9FD0D6" stroke-width="1"/>
+    <rect x="328" y="341" width="137" height="3" rx="1.5" fill="#0F7B8A"/>
+    <text x="396" y="367">Performance</text>
+
+    <rect x="500" y="341" width="137" height="40" rx="4" fill="url(#pillarHi)" stroke="#9FD0D6" stroke-width="1"/>
+    <rect x="500" y="341" width="137" height="3" rx="1.5" fill="#0F7B8A"/>
+    <text x="568" y="367">Compliance</text>
+
+    <rect x="672" y="341" width="137" height="40" rx="4" fill="url(#pillarHi)" stroke="#9FD0D6" stroke-width="1"/>
+    <rect x="672" y="341" width="137" height="3" rx="1.5" fill="#0F7B8A"/>
+    <text x="740" y="367">Capacity</text>
+
+    <rect x="843" y="341" width="137" height="40" rx="4" fill="url(#pillarHi)" stroke="#9FD0D6" stroke-width="1"/>
+    <rect x="843" y="341" width="137" height="3" rx="1.5" fill="#0F7B8A"/>
+    <text x="911" y="367">Cost + Price</text>
+  </g>
+
+  <rect x="157" y="389" width="823" height="40" rx="4" fill="#F2F4F7" filter="url(#soft)"/>
+  <text x="568" y="414" text-anchor="middle" font-size="17" fill="#3D4758">Inventory | Configuration</text>
+
+  <!-- Architecture: Platform -->
+  <rect x="157" y="458" width="823" height="198" rx="4" fill="#F2F4F7"/>
+  <text x="568" y="493" text-anchor="middle" font-size="28" font-weight="700" fill="#0F7B8A">Platform</text>
+  <text x="568" y="517" text-anchor="middle" font-size="15" fill="#3D4758">System Architecture of Enterprise Private Cloud</text>
+
+  <rect x="391" y="530" width="353" height="117" rx="4" fill="#FFFFFF" stroke="#D9DEE6" stroke-width="1"/>
+  <text x="568" y="557" text-anchor="middle" font-size="16" fill="#14213D">Management + Portal</text>
+  <text x="455" y="597" text-anchor="middle" font-size="16" fill="#14213D">Compute</text>
+  <rect x="508" y="572" width="2" height="36" fill="#C9CFD8"/>
+  <text x="568" y="597" text-anchor="middle" font-size="16" fill="#14213D">Storage</text>
+  <rect x="626" y="572" width="2" height="36" fill="#C9CFD8"/>
+  <text x="680" y="597" text-anchor="middle" font-size="16" fill="#14213D">Network</text>
+  <text x="568" y="635" text-anchor="middle" font-size="16" fill="#14213D">Security</text>
+</svg>
