@@ -135,14 +135,21 @@
   .cadence { z-index: 1; }
   .cadence:hover, .cadence:focus-within { z-index: 30; }
   .cadence:hover, .cadence:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.25); outline-color: #111111; }
-  .cadence .time { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
-    font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,.18); }
-  .cadence .time svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
-  .cadence .more { display: block; margin-top: 8px; font-size: 11px; text-decoration: underline; opacity: .9; }
   .cadence .pop { display: none; position: absolute; top: calc(100% + 10px); left: 0; width: 290px; z-index: 20;
     background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px;
     box-shadow: 0 10px 24px rgba(0,0,0,.18); padding: 12px 14px; font-size: 13px; line-height: 1.45; font-weight: 400; cursor: default; }
   .cadence:hover .pop, .cadence:focus-visible .pop, .cadence:focus-within .pop { display: block; }
+  .cadence .time { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; align-items: flex-end;
+    padding: 8px 14px; border-radius: 10px; background: rgba(255,255,255,.2); }
+  .cadence .time .lbl { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .9; }
+  .cadence .time .val { display: inline-flex; align-items: center; gap: 7px; font-size: 22px; font-weight: 700; margin-top: 2px; }
+  .cadence .time svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+  .cadence .info { position: absolute; left: 12px; bottom: 10px; width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid #FFFFFF; background: rgba(255,255,255,.15); color: #FFFFFF; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; padding: 0; }
+  .cadence .info svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+  .cadence .info:hover, .cadence .info:focus-visible { background: rgba(255,255,255,.35); outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  .cadence { min-height: 96px; padding-bottom: 46px; }
 </style>
 </head>
 <body>
@@ -165,26 +172,26 @@
   <div class="corner"></div>
   <div class="cadence" tabindex="0">
     <h2>Live</h2>
-    <span class="time"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 sec</span>
-    <span class="more">Details &#9662;</span>
+    <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 sec</span></span>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6" fill="currentColor"/></svg></button>
     <div class="pop">Streaming, auto-updating on the big TV screen with auto-rotation</div>
   </div>
   <div class="cadence" tabindex="0">
     <h2>Daily</h2>
-    <span class="time"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 min</span>
-    <span class="more">Details &#9662;</span>
+    <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 min</span></span>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6" fill="currentColor"/></svg></button>
     <div class="pop">Quick, 5 min review at start of day. Focus on the day ahead only. Time consuming check is not operationally practical.</div>
   </div>
   <div class="cadence" tabindex="0">
     <h2>Weekly</h2>
-    <span class="time"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>1 hour</span>
-    <span class="more">Details &#9662;</span>
+    <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>1 hour</span></span>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6" fill="currentColor"/></svg></button>
     <div class="pop">1 hour deeper dive at start of week. Plan ahead for the week. Insight analysis.</div>
   </div>
   <div class="cadence" tabindex="0">
     <h2>Monthly</h2>
-    <span class="time"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Half a day</span>
-    <span class="more">Details &#9662;</span>
+    <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Half a day</span></span>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6" fill="currentColor"/></svg></button>
     <div class="pop">Big team review. Half a day at start of month. Review past month, plan ahead.</div>
   </div>
 
