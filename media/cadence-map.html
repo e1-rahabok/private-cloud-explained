@@ -224,6 +224,14 @@
     display: flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; }
   .dash .tag .dash-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .dash .tag .dash-link:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  /* IT Leaders bar: two separate popups. Icon popup on the icon, info popup on the info button only. */
+  .dash .tag.it-dash .pop { display: none !important; }
+  .dash .tag.it-dash .info:hover ~ .pop, .dash .tag.it-dash .info:focus-visible ~ .pop { display: block !important; }
+  .dash .tag .dash-link .dash-pop { display: none; position: absolute; top: calc(100% + 8px); left: -8px; width: 200px; z-index: 40;
+    background: #FFFFFF; color: #111111; border: 1px solid #D0D0D0; border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18); padding: 8px 10px; font-size: 13px; line-height: 1.45; font-weight: 400;
+    white-space: normal; text-align: left; cursor: pointer; text-decoration: none; }
+  .dash .tag .dash-link:hover .dash-pop, .dash .tag .dash-link:focus-visible .dash-pop { display: block; }
 </style>
 </head>
 <body>
@@ -255,6 +263,7 @@ const POPUP_TEXT = {
   "team.l3": "Handles escalations L2 cannot resolve: product defects, design faults, and deep troubleshooting. Opens and tracks vendor support cases with Broadcom. Owns root cause analysis for major incidents.",
   "team.security": "Monitors security events from vDefend and NSX and responds to security incidents. Checks firewall rules and access configuration against policy. Validates infrastructure compliance against MAS TRM and AI risk guidelines using continuous drift detection.",
   "team.dr": "Checks backup job results each day and resolves failed jobs. Manages VMware Site Recovery Manager (SRM). Validates RPO/RTO SLA compliance via automated non-disruptive DR testing.",
+  "dash.sample": "Try a sample dashboard",
   "team.it.dashboard": "Using the Executive Dashboard, reviews service availability, major incidents, and capacity risks. Approves changes with significant business risk and sets priorities for the next period.",
   "team.it.reports": "Automated reporting on infrastructure ROI, hardware lifecycle milestones, aggregated security posture, availability against target, incident and change summary, capacity forecast, cost against budget, and open risks",
 };
@@ -332,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <span class="tag cap" tabindex="0" style="grid-column:3 / 5; grid-row:4">Capacity + FinOps Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.capacity"></span></span>
     <span class="tag l3" tabindex="0" style="grid-column:3 / 5; grid-row:5">L3 Team (Engineering)<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.l3"></span></span>
     <span class="tag dr" tabindex="0" style="grid-column:3 / 5; grid-row:6">Backup + DR Team<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.dr"></span></span>
-    <span class="tag it" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<a class="dash-link" href="https://e1-rahabok.github.io/VMW-Executive-Dashboard/design/export/" target="_blank" rel="noopener" aria-label="Open executive dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg></a><button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
+    <span class="tag it it-dash" tabindex="0" style="grid-column:4 / 5; grid-row:7">IT Leaders<a class="dash-link" href="https://e1-rahabok.github.io/VMW-Executive-Dashboard/design/export/" target="_blank" rel="noopener" aria-label="Open executive dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"/></svg><span class="dash-pop" data-pop="dash.sample"></span></a><button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="team.it.dashboard"></span></span>
   </div>
 
   <div class="rowlabel"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h10l5 5v15H5z" fill="#7A4E9C"/><path d="M15 2v5h5z" fill="#C9B3E0"/><rect x="8" y="12" width="2.5" height="6" fill="#FFFFFF"/><rect x="11.5" y="9" width="2.5" height="9" fill="#FFFFFF"/><rect x="15" y="14" width="2.5" height="4" fill="#FFFFFF"/></svg></span>Reports</div>
