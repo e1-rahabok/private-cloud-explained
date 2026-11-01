@@ -132,6 +132,8 @@
   footer { font-size: 11px; color: var(--muted); margin-top: 10px; }
   .cadence { position: relative; cursor: pointer; outline: 2px solid transparent; outline-offset: 2px;
     transition: transform .15s ease, box-shadow .15s ease, outline-color .15s ease; }
+  .cadence { z-index: 1; }
+  .cadence:hover, .cadence:focus-within { z-index: 30; }
   .cadence:hover, .cadence:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.25); outline-color: #111111; }
   .cadence .time { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
     font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,.18); }
