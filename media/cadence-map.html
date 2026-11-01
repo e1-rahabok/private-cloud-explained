@@ -164,6 +164,12 @@
   .cadence .info { box-shadow: 0 2px 6px rgba(0,0,0,.25); }
   header h1 { letter-spacing: -.01em; }
   .tl-track::before { box-shadow: 0 2px 6px rgba(20,33,61,.25); }
+  /* VCF Operations group bracket along the row labels */
+  body { position: relative; }
+  #vcf { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
+  #vcf .vcf-line { position: absolute; width: 3px; background: #3A3A3A; border-radius: 2px; }
+  #vcf .vcf-title { position: absolute; white-space: nowrap; text-align: center; font-size: 13px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; color: #3A3A3A; transform: rotate(-90deg); transform-origin: center; line-height: 20px; }
 </style>
 </head>
 <body>
@@ -282,6 +288,35 @@
     var s = box(src);
     arrow(s, box(l2));
     arrow(s, box(sec));
+  }
+  render();
+  window.addEventListener('resize', render);
+})();
+</script>
+<div id="vcf" aria-hidden="true"><div class="vcf-line"></div><div class="vcf-title">VCF Operations</div></div>
+<script>
+(function () {
+  var body = document.body;
+  var wrap = document.getElementById('vcf');
+  function box(el) {
+    var r = el.getBoundingClientRect(), b = body.getBoundingClientRect();
+    return { x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height };
+  }
+  function render() {
+    var labels = document.querySelectorAll('.rowlabel');
+    if (labels.length < 4) return;
+    var first = box(labels[0]), last = box(labels[3]);
+    var top = first.y, bottom = last.y + last.h, H = bottom - top;
+    var lineX = first.x - 14;
+    var line = wrap.querySelector('.vcf-line');
+    line.style.left = lineX + 'px';
+    line.style.top = top + 'px';
+    line.style.height = H + 'px';
+    var t = wrap.querySelector('.vcf-title');
+    var cx = lineX - 16, cy = top + H / 2;
+    t.style.width = H + 'px';
+    t.style.left = (cx - H / 2) + 'px';
+    t.style.top = (cy - 10) + 'px';
   }
   render();
   window.addEventListener('resize', render);
