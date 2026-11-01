@@ -145,10 +145,10 @@
   .cadence .time .val { display: inline-flex; align-items: center; gap: 7px; font-size: 22px; font-weight: 700; margin-top: 2px; }
   .cadence .time svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
   .cadence .info { position: absolute; left: 12px; bottom: 10px; width: 28px; height: 28px; border-radius: 50%;
-    border: 2px solid #FFFFFF; background: rgba(255,255,255,.15); color: #FFFFFF; cursor: pointer;
+    border: none; background: #1F6FD1; color: #FFFFFF; cursor: pointer;
     display: flex; align-items: center; justify-content: center; padding: 0; }
-  .cadence .info svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
-  .cadence .info:hover, .cadence .info:focus-visible { background: rgba(255,255,255,.35); outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  .cadence .info svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+  .cadence .info:hover, .cadence .info:focus-visible { background: #174E96; outline: 2px solid #FFFFFF; outline-offset: 2px; }
   .cadence { min-height: 96px; padding-bottom: 46px; }
 </style>
 </head>
@@ -173,25 +173,25 @@
   <div class="cadence" tabindex="0">
     <h2>Live</h2>
     <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 sec</span></span>
-    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6" fill="currentColor"/></svg></button>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button>
     <div class="pop">Streaming, auto-updating on the big TV screen with auto-rotation</div>
   </div>
   <div class="cadence" tabindex="0">
     <h2>Daily</h2>
     <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 min</span></span>
-    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6" fill="currentColor"/></svg></button>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button>
     <div class="pop">Quick, 5 min review at start of day. Focus on the day ahead only. Time consuming check is not operationally practical.</div>
   </div>
   <div class="cadence" tabindex="0">
     <h2>Weekly</h2>
     <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>1 hour</span></span>
-    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6" fill="currentColor"/></svg></button>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button>
     <div class="pop">1 hour deeper dive at start of week. Plan ahead for the week. Insight analysis.</div>
   </div>
   <div class="cadence" tabindex="0">
     <h2>Monthly</h2>
     <span class="time"><span class="lbl">Review time</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>0.5 day</span></span>
-    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".6" fill="currentColor"/></svg></button>
+    <button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button>
     <div class="pop">Big team review. Half a day at start of month. Review past month, plan ahead.</div>
   </div>
 
