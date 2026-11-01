@@ -65,8 +65,8 @@
     grid-column: 2 / 6;
     display: grid;
     grid-template-columns: 0.7fr 1fr 1fr 1fr;
-    grid-template-rows: 44px 44px 30px 44px 44px 30px 30px;
-    gap: 6px 8px;
+    grid-template-rows: repeat(7, 44px);
+    gap: 10px 8px;
     border-radius: 6px;
     box-shadow: inset 0 0 0 1px var(--line);
     padding: 8px 0;
@@ -197,6 +197,7 @@
   .tag .info svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
   .tag .info:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
   .tag[tabindex] { cursor: pointer; }
+  .tag { min-height: 44px; }
 </style>
 </head>
 <body>
