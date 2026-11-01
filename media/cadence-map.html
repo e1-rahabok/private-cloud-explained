@@ -279,6 +279,17 @@ const POPUP_TEXT = {
   "team.dr": "Checks backup job results each day and resolves failed jobs. Manages VMware Site Recovery Manager (SRM). Validates RPO/RTO SLA compliance via automated non-disruptive DR testing.",
   "dash.sample": "Try a sample dashboard",
   "team.it.dashboard": "Using the Executive Dashboard, reviews service availability, major incidents, and capacity risks. Approves changes with significant business risk and sets priorities for the next period.",
+  "dash.design": {
+    "title": "How to design a dashboard",
+    "intro": "Answer these five questions for each dashboard before building it.",
+    "rows": [
+      ["Who", "Begin with the end in mind. Who are actually using the dashboards you create? What specific role and persona is going to use it?", "Start by creating a list of all users who would be accessing and using information in the dashboard.", "Against this list mention the kind of information they would find useful for the specific persona."],
+      ["What", "What is the type of activity (granular vs. high level) they will perform?", "List next to the task if the information needs to be granular or high level. Sometimes users are looking for just a KPI number, sometimes they are looking for trends. Sometimes users might want to interact with the information, create drill downs etc.", "The complexity of the activity will help you identify if you need a complex widget or a simple one."],
+      ["How", "How (workflow) will they use the dashboard?", "List down what happens after they view the information, do they need to use another application, another visualization. Plan accordingly and place navigation to enable this to happen."],
+      ["When", "How often (hourly, daily, weekly, monthly, quarterly) will they use the dashboard?", "Think about the usage of the dashboard, is it a frequent use case needed for daily use to perform work, or is it for monitoring on an irregular basis."],
+      ["Why", "Why (outcome) do they need the dashboard?", "Also list down outcomes from the dashboard usage. What is the usefulness of using the dashboard and what goals or outcomes the user is likely to achieve."]
+    ]
+  },
   "live.bestpractice": {
     "title": "Best practice for a NOC screen",
     "intro": "Many NOC screens display static and non-urgent content, so people stop looking at them after a while. Follow these rules:",
@@ -412,7 +423,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="cell empty"></div>
   <div class="cell empty"></div>
 
-  <div class="rowlabel" style="flex-direction:column; align-items:flex-start"><div style="display:flex; align-items:center"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17a9 9 0 0 1 18 0" fill="none" stroke="#2A9D8F" stroke-width="3.4" stroke-linecap="round"/><path d="M12 17l4.5-5" stroke="#14213D" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="2" fill="#14213D"/><path d="M19.5 1.8l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="#7A4E9C"/></svg></span>AI Dashboard</div><small style="display:block; font-size:11px; font-weight:400; margin-top:2px; color:var(--muted)">Personalized to each person, not just role. Covers both Alert + Insight.</small></div>
+  <div class="rowlabel" style="flex-direction:column; align-items:flex-start"><div style="display:flex; align-items:center"><span style="display:flex; margin-right:10px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17a9 9 0 0 1 18 0" fill="none" stroke="#2A9D8F" stroke-width="3.4" stroke-linecap="round"/><path d="M12 17l4.5-5" stroke="#14213D" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="2" fill="#14213D"/><path d="M19.5 1.8l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="#7A4E9C"/></svg></span>AI Dashboard<button class="info rep-btn" type="button" aria-label="Show how to design a dashboard" aria-expanded="false" aria-controls="dash-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button></div><small style="display:block; font-size:11px; font-weight:400; margin-top:2px; color:var(--muted)">Personalized to each person, not just role. Covers both Alert + Insight.</small></div>
   <div class="dash">
     <div class="esc-info"><button class="info" type="button" aria-label="Show escalation note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="escalation.note"></span></div>
   <span class="tag noc" tabindex="0" style="grid-column:1 / 2; grid-row:1; justify-self:start; margin-left:114px; width:180px; justify-content:flex-start; padding-left:34px">NOC + Help Desk<button class="info" type="button" aria-label="Show details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.5v7.5"/><circle cx="12" cy="6.6" r="1.5" fill="currentColor" stroke="none"/></svg></button><span class="pop" data-pop="noc.dashboard"></span></span>
@@ -432,6 +443,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </div>
 
+<div class="rep-panel" id="dash-panel" data-pop="dash.design"></div>
 <div class="rep-panel" id="live-panel" data-pop="live.bestpractice"></div>
 <div class="rep-panel" id="rep-panel" data-pop="reports.edge"></div>
 <footer>Source: Private Cloud Management, 5th edition. Empty cells mean no defined use case at that cadence.<br>Note: Ad hoc tasks are not shown. Longer cadences, such as quarterly, are not shown.</footer>
