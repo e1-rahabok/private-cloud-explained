@@ -234,20 +234,20 @@
      team.*           Team bars in the AI Dashboard and Reports
    ========================================================================== */
 const POPUP_TEXT = {
-  "cadence.live": "Streaming, auto-updating on the big TV screen with auto-rotation",
-  "cadence.daily": "Quick, 5 min review at start of day. Focus on the day ahead only. Time consuming check is not operationally practical.",
-  "cadence.weekly": "1 hour deeper dive at start of week. Plan ahead for the week. Insight analysis.",
-  "cadence.monthly": "Big team review. Half a day at start of month. Review past month, plan ahead.",
-  "noc.live": "Monitors the live screen and triages AI alerts in real time, escalating issues to Level 2.",
-  "noc.dashboard": "Use the Shift Handover dashboard to support the transition between shifts",
-  "escalation.note": "Escalation path follows the Exit Criteria + Entry Criteria forms",
-  "team.l2": "Proactive performance analysis using both insight + alert. Reclamation and rightsizing.",
-  "team.capacity": "Capacity Planning and cost optimization",
-  "team.l3": "Plan and design the overall system architecture, perform deep troubleshooting and engage vendor to solve escalation",
-  "team.security": "Monitor security posture, respond to security alerts, and check compliance with policies such as the MAS AI risk guidelines.",
-  "team.dr": "Confirm backups complete successfully and run restore and disaster recovery tests on schedule.",
-  "team.it.dashboard": "Review overall health, risks, and trends on the dashboard, and set priorities and approve decisions.",
-  "team.it.reports": "Receive weekly and monthly reports to track operations, capacity, and performance for oversight and decisions.",
+  "cadence.live": "NOC wall display, auto-refreshing. Shows big picture, not just alerts, as the goal is proactive and not waiting for alerts. Using a purpose built dashboard, L1 Staff is empowered to perform L1 analysis to reduce escalation to L2",
+  "cadence.daily": "Quick 5 minutes else human will fall back to reactive. Focus on insight with the sole goal to prevent alerts coming during the next 24 hours. Defer deep analysis to the weekly review.",
+  "cadence.weekly": "About 1 hour at start of week. Review last week's alerts and insight to ensure the week will be fine. Confirm next week's maintenance windows and changes. Output: actions with named owners and due dates.",
+  "cadence.monthly": "Full team meeting to ensure cross team collaboration. Review the 4 SLA types (Availability, Performance, Security, Service). Review major, recurring incidents, capacity forecast against headroom. Output: actions for the next month with named owners and due dates.",
+  "noc.live": "Watches the live screen and AI alerts. Acknowledges each alert, confirms severity, and opens or updates an incident. Runs the first-line runbook for known alerts. Triggers API-driven for L2 escalation. Also logs and routes help desk requests.",
+  "noc.dashboard": "Shift handover record for AI analysis. Using the Shift Handover dashboard, the outgoing shift explains open incidents, acknowledged alerts, pending changes, and watch items. The incoming shift confirms receipt.",
+  "escalation.note": "API-driven escalation, with L1 Exit Criteria and L2 Entry Criteria form filled. This captures knowledge for AI analysis.",
+  "team.l2": "Diagnoses and resolves incidents escalated from NOC across platform, storage, network, Kubernetes, AI workloads, and QA of changes. Owns the change plan and post-change checks for its domains. Opens a problem record when an incident recurs.",
+  "team.capacity": "Tracks utilization and headroom for clusters, hosts, datastores, and networks against defined usable capacity. Forecasts when expansion is needed. Reviews cloud cost reports and assigns cost drivers to owners.",
+  "team.l3": "Handles escalations L2 cannot resolve: product defects, design faults, and deep troubleshooting. Opens and tracks vendor support cases with Broadcom. Owns root cause analysis for major incidents.",
+  "team.security": "Monitors security events from vDefend and NSX and responds to security incidents. Checks firewall rules and access configuration against policy. Validates infrastructure compliance against MAS TRM and AI risk guidelines using continuous drift detection.",
+  "team.dr": "Checks backup job results each day and resolves failed jobs. Manages VMware Site Recovery Manager (SRM). Validates RPO/RTO SLA compliance via automated non-disruptive DR testing.",
+  "team.it.dashboard": "Using the Executive Dashboard, reviews service availability, major incidents, and capacity risks. Approves changes with significant business risk and sets priorities for the next period.",
+  "team.it.reports": "Automated reporting on infrastructure ROI, hardware lifecycle milestones, aggregated security posture, availability against target, incident and change summary, capacity forecast, cost against budget, and open risks",
 };
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-pop]").forEach(function (el) {
