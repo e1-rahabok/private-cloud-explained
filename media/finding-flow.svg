@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="360" viewBox="0 0 1080 360" font-family="Segoe UI, Arial, Helvetica, sans-serif">
+  <defs>
+    <filter id="sh" x="-12%" y="-12%" width="124%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#14213D" flood-opacity="0.14"/>
+    </filter>
+    <filter id="pill" x="-20%" y="-30%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#14213D" flood-opacity="0.10"/>
+    </filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F3F6FB"/>
+    </linearGradient>
+    <marker id="aG" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1DB954"/>
+    </marker>
+    <marker id="aR" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#E03131"/>
+    </marker>
+    <marker id="aS" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7B8594"/>
+    </marker>
+    <clipPath id="c1"><rect x="30" y="30" width="180" height="110" rx="12"/></clipPath>
+    <clipPath id="c2"><rect x="590" y="30" width="180" height="110" rx="12"/></clipPath>
+    <clipPath id="c3"><rect x="870" y="30" width="180" height="110" rx="12"/></clipPath>
+    <clipPath id="c4"><rect x="310" y="220" width="180" height="110" rx="12"/></clipPath>
+    <clipPath id="c5"><rect x="590" y="220" width="180" height="110" rx="12"/></clipPath>
+    <clipPath id="c6"><rect x="870" y="220" width="180" height="110" rx="12"/></clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1080" height="360" fill="url(#bg)"/>
+
+
+  <!-- Connectors: grey -->
+  <line x1="590" y1="140" x2="460" y2="222" stroke="#7B8594" stroke-width="2.5" marker-end="url(#aS)"/>
+  <line x1="770" y1="85" x2="866" y2="85" stroke="#7B8594" stroke-width="2.5" marker-end="url(#aS)"/>
+  <line x1="762" y1="222" x2="866" y2="140" stroke="#7B8594" stroke-width="2.5" marker-end="url(#aS)"/>
+
+  <!-- Connectors: green (positive findings) -->
+  <line x1="210" y1="85" x2="586" y2="85" stroke="#1DB954" stroke-width="3" marker-end="url(#aG)"/>
+
+  <!-- Connectors: red (negative findings, important, urgent); rounded elbow -->
+  <path d="M120,140 L120,261 Q120,275 134,275 L306,275" fill="none" stroke="#E03131" stroke-width="3" stroke-linejoin="round" marker-end="url(#aR)"/>
+  <line x1="490" y1="275" x2="586" y2="275" stroke="#E03131" stroke-width="3" marker-end="url(#aR)"/>
+  <line x1="770" y1="275" x2="866" y2="275" stroke="#E03131" stroke-width="3" marker-end="url(#aR)"/>
+
+  <!-- Connector labels as pills -->
+  <g filter="url(#pill)">
+    <rect x="296" y="50" width="128" height="26" rx="13" fill="#FFFFFF"/>
+    <text x="360" y="68" text-anchor="middle" font-size="13" fill="#2E3A4B">positive findings</text>
+    <rect x="132" y="172" width="136" height="26" rx="13" fill="#FFFFFF"/>
+    <text x="200" y="189" text-anchor="middle" font-size="13" fill="#2E3A4B">negative findings</text>
+    <rect x="440" y="172" width="84" height="26" rx="13" fill="#FFFFFF"/>
+    <text x="482" y="189" text-anchor="middle" font-size="13" fill="#2E3A4B">All issues</text>
+    <rect x="498" y="228" width="84" height="38" rx="10" fill="#FFFFFF"/>
+    <text x="540" y="244" text-anchor="middle" font-size="13" fill="#2E3A4B">Important</text>
+    <text x="540" y="260" text-anchor="middle" font-size="13" fill="#2E3A4B">issues</text>
+    <rect x="778" y="228" width="84" height="38" rx="10" fill="#FFFFFF"/>
+    <text x="820" y="244" text-anchor="middle" font-size="13" fill="#2E3A4B">Urgent</text>
+    <text x="820" y="260" text-anchor="middle" font-size="13" fill="#2E3A4B">issue</text>
+    <rect x="812" y="172" width="150" height="26" rx="13" fill="#FFFFFF"/>
+    <text x="887" y="189" text-anchor="middle" font-size="13" fill="#2E3A4B">Non-important issue</text>
+  </g>
+
+  <!-- Node: Finding -->
+  <g filter="url(#sh)"><rect x="30" y="30" width="180" height="110" rx="12" fill="#FFFFFF"/></g>
+  <rect x="30" y="30" width="180" height="5" fill="#7B8594" clip-path="url(#c1)"/>
+  <text x="120" y="68" text-anchor="middle" font-size="20" font-weight="700" fill="#14213D">Finding</text>
+  <text x="120" y="94" text-anchor="middle" font-size="13" fill="#1F5AA6">Source: logs, events,</text>
+  <text x="120" y="112" text-anchor="middle" font-size="13" fill="#1F5AA6">metrics, tasks</text>
+
+  <!-- Node: Insight -->
+  <g filter="url(#sh)"><rect x="590" y="30" width="180" height="110" rx="12" fill="#FFFFFF"/></g>
+  <rect x="590" y="30" width="180" height="5" fill="#7B8594" clip-path="url(#c2)"/>
+  <text x="680" y="68" text-anchor="middle" font-size="20" font-weight="700" fill="#14213D">Insight</text>
+  <text x="680" y="94" text-anchor="middle" font-size="13" fill="#1F5AA6">Not urgent.</text>
+  <text x="680" y="112" text-anchor="middle" font-size="13" fill="#1F5AA6">Requires SME</text>
+
+  <!-- Node: Daily Check -->
+  <g filter="url(#sh)"><rect x="870" y="30" width="180" height="110" rx="12" fill="#FFFFFF"/></g>
+  <rect x="870" y="30" width="180" height="5" fill="#7B8594" clip-path="url(#c3)"/>
+  <text x="960" y="68" text-anchor="middle" font-size="20" font-weight="700" fill="#14213D">Daily Check</text>
+  <text x="960" y="94" text-anchor="middle" font-size="13" fill="#1F5AA6">Start of Day +</text>
+  <text x="960" y="112" text-anchor="middle" font-size="13" fill="#1F5AA6">End of Day</text>
+
+  <!-- Node: Issue -->
+  <g filter="url(#sh)"><rect x="310" y="220" width="180" height="110" rx="12" fill="#FFFFFF"/></g>
+  <rect x="310" y="220" width="180" height="5" fill="#7B8594" clip-path="url(#c4)"/>
+  <text x="400" y="258" text-anchor="middle" font-size="20" font-weight="700" fill="#14213D">Issue</text>
+  <rect x="340" y="274" width="120" height="30" rx="8" fill="#F5F7FB" stroke="#B8C2D0"/>
+  <text x="400" y="295" text-anchor="middle" font-size="14" fill="#14213D">Symptom</text>
+
+  <!-- Node: Alert -->
+  <g filter="url(#sh)"><rect x="590" y="220" width="180" height="110" rx="12" fill="#FFFFFF"/></g>
+  <rect x="590" y="220" width="180" height="5" fill="#7B8594" clip-path="url(#c5)"/>
+  <text x="680" y="258" text-anchor="middle" font-size="20" font-weight="700" fill="#14213D">Alert</text>
+  <text x="680" y="286" text-anchor="middle" font-size="13" fill="#1F5AA6">NOC Team watch</text>
+  <text x="680" y="304" text-anchor="middle" font-size="13" fill="#1F5AA6">multiple times daily</text>
+
+  <!-- Node: Notification -->
+  <g filter="url(#sh)"><rect x="870" y="220" width="180" height="110" rx="12" fill="#FFFFFF"/></g>
+  <rect x="870" y="220" width="180" height="5" fill="#7B8594" clip-path="url(#c6)"/>
+  <text x="960" y="258" text-anchor="middle" font-size="20" font-weight="700" fill="#14213D">Notification</text>
+  <text x="960" y="286" text-anchor="middle" font-size="13" fill="#1F5AA6">Immediately pushed</text>
+  <text x="960" y="304" text-anchor="middle" font-size="13" fill="#1F5AA6">to mobile or email</text>
+  <!-- Start dots (drawn last so they sit on top of node edges) -->
+  <circle cx="210" cy="85" r="5" fill="#1DB954"/>
+  <circle cx="120" cy="140" r="5" fill="#E03131"/>
+  <circle cx="590" cy="140" r="5" fill="#7B8594"/>
+  <circle cx="770" cy="85" r="5" fill="#7B8594"/>
+  <circle cx="762" cy="222" r="5" fill="#7B8594"/>
+  <circle cx="490" cy="275" r="5" fill="#E03131"/>
+  <circle cx="770" cy="275" r="5" fill="#E03131"/>
+</svg>
